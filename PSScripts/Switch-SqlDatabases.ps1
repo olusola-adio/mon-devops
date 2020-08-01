@@ -25,7 +25,7 @@ SQL SA administrator password
 SQL script to run
 
 .EXAMPLE
-Switch-SqlDatabases -SQLServerName mon-foo-bar-sql -ExistingDatabaseName mon-old-db -ReplacementDatabaseName mon-new-db
+Switch-SqlDatabases -SQLServerName dfc-foo-bar-sql -ExistingDatabaseName dfc-old-db -ReplacementDatabaseName dfc-new-db
 
 #>
 

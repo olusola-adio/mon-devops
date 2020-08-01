@@ -40,7 +40,6 @@ steps:
     Contents: '${{ parameters.DockerfileContext }}/${{ parameters.ManifestFilePath }}'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/${{ parameters.ImageBaseName }}'
     flattenFolders: true
-- script: dir '$(Build.ArtifactStagingDirectory)/${{ parameters.ImageBaseName }}'
 - task: PublishPipelineArtifact@0
   displayName: Publish Pipeline Artifact
   condition: ne('${{ parameters.DockerfileContext }}/${{ parameters.ManifestFilePath }}', '')

@@ -37,7 +37,7 @@ Optional - the max size the databse can grow to (in bytes). Defaults to 25000000
 Optional - moves the database into the elastic pool if specified
 
 .EXAMPLE
-New-DatabaseFromBlobFile -SQLServerName mon-foo-bar-sql -SQLDatabase mon-foo-bar-db -SQLAdminUsername sa -SQLAdminPassword password1 -StorageUrl https://monfoobarstr.blob.core.windows.net/backup/db.bacpac -StorageAccountKey letmein==
+New-DatabaseFromBlobFile -SQLServerName dfc-foo-bar-sql -SQLDatabase dfc-foo-bar-db -SQLAdminUsername sa -SQLAdminPassword password1 -StorageUrl https://dfcfoobarstr.blob.core.windows.net/backup/db.bacpac -StorageAccountKey letmein==
 
 #>
 

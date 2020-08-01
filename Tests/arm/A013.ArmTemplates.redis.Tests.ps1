@@ -1,12 +1,12 @@
 # common variables
-$ResourceGroupName = "mon-test-template-rg"
+$ResourceGroupName = "dwp-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\redis.json"
 
 Describe "Redis Cache Deployment Tests" -Tag "Acceptance" {
   
   Context "When a Redis Cache is deployed with just a name" {
     $TemplateParameters = @{
-      redisName = "mon-foo-bar-rds"
+      redisName = "dfc-foo-bar-rds"
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName

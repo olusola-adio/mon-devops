@@ -30,9 +30,9 @@ Describe "Export-KeyVaultCertToPemFiles unit tests" -Tag "Unit" {
                 
         CertificateSecretName = "foo-bar-gov-uk"
         FileShare = "foofiles"
-        KeyVaultName = "mon-foo-shared-kv"
-        StorageAccountName = "monfoosharedstr"
-        StorageResourceGroupName = "mon-foo-shared-rg"
+        KeyVaultName = "dfc-foo-shared-kv"
+        StorageAccountName = "dfcfoosharedstr"
+        StorageResourceGroupName = "dfc-foo-shared-rg"
     }
 
     Context "When passed a single output directory" {

@@ -1,9 +1,9 @@
 # common variables
-$ResourceGroupName = "mon-test-template-rg"
+$ResourceGroupName = "dwp-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\SqlServer\sql-database.json"
 $TemplateParametersDefault = @{
-    databaseName = "mon-foo-bar-db"
-    sqlServerName = "mon-foo-bar-sql"
+    databaseName = "dfc-foo-bar-db"
+    sqlServerName = "dfc-foo-bar-sql"
 }
 
 Describe "Sql Database Deployment Tests" -Tag "Acceptance" {

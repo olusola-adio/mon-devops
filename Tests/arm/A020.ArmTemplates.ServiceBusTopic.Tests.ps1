@@ -1,12 +1,12 @@
 # common variables
-$ResourceGroupName = "mon-test-template-rg"
+$ResourceGroupName = "dwp-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\ServiceBus\servicebus-topic.json"
 
 Describe "Service Bus Topic Deployment Tests" -Tag "Acceptance" {
   
   Context "When deploying the Service Bus Topic" {
     $TemplateParameters = @{
-      serviceBusNamespaceName = "mon-foo-bar-ns"
+      serviceBusNamespaceName = "dfc-foo-bar-ns"
       serviceBusTopicName     = "topic-name"
     }
     $TestTemplateParams = @{

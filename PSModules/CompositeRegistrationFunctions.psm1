@@ -46,9 +46,9 @@ Invoke a request against one of the composite registration apis
 
 Plesae see the following for more information:
 
-https://skillsfundingagency.atlassian.net/wiki/spaces/MON/pages/1349779557/Composite+UI+Registration+Paths+API
-https://skillsfundingagency.atlassian.net/wiki/spaces/MON/pages/1353252872/Composite+UI+Registration+Regions+API
-https://skillsfundingagency.atlassian.net/wiki/spaces/MON/pages/423231525/DSS+HTTP+response+codes
+https://skillsfundingagency.atlassian.net/wiki/spaces/DFC/pages/1349779557/Composite+UI+Registration+Paths+API
+https://skillsfundingagency.atlassian.net/wiki/spaces/DFC/pages/1353252872/Composite+UI+Registration+Regions+API
+https://skillsfundingagency.atlassian.net/wiki/spaces/DFC/pages/423231525/DSS+HTTP+response+codes
 
 .PARAMETER Url
 Url to the entity

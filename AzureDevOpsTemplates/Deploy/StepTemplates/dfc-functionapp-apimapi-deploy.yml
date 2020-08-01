@@ -1,11 +1,11 @@
-﻿# This template requires the mon-devops repo has already been checked out into s/mon-devops in a prior step.
+﻿# This template requires the dfc-devops repo has already been checked out into s/dfc-devops in a prior step.
 # If it's in a different location, please pass the PSScriptsPath parameter with it's location.
 parameters:
   AzureSubscription: ''
   FunctionAppName: ''
   FunctionResourceGroup: ''
   FunctionPackage: ''
-  PSScriptsPath: '$(Agent.BuildDirectory)/s/mon-devops/PSScripts'
+  PSScriptsPath: '$(Agent.BuildDirectory)/s/dfc-devops/PSScripts'
   ApimResourceGroup: ''
   ApimInstanceName: ''
   ApimLoggerName: ''

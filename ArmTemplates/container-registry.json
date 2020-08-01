@@ -9,7 +9,7 @@
         },
         "containerRegistrySku": {
             "type": "string",
-            "defaultValue": "Basic",
+            "defaultValue": "Standard",
             "allowedValues": [
                 "Basic",
                 "Standard",

@@ -1,5 +1,5 @@
 # common variables
-$ResourceGroupName = "mon-test-template-rg"
+$ResourceGroupName = "dwp-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\APIM\apim-api.json"
 
 Describe "Apim Service Deployment Tests" -Tag "Acceptance" {
@@ -7,7 +7,7 @@ Describe "Apim Service Deployment Tests" -Tag "Acceptance" {
     Context "When APIM api is deployed with just name, product and api name" {
         $TemplateParameters = @{
             apimProductInstanceName = "product-bar-foo"
-            apimServiceName         = "mon-foo-bar-apim"
+            apimServiceName         = "dfc-foo-bar-apim"
             apiName                 = "foo"
         }
         $TestTemplateParams = @{

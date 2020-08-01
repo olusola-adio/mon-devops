@@ -18,7 +18,7 @@ Full path to the json file including file name (use either this or IndexConfigur
 JSON configuration (use either this or IndexFilePath)
 
 .EXAMPLE
-Set-SearchIndexes -SearchName mon-foo-sch -ResourceGroupName mon-foo-rg -IndexFilePath C:\path\to\index.json
+Set-SearchIndexes -SearchName dfc-foo-sch -ResourceGroupName dfc-foo-rg -IndexFilePath C:\path\to\index.json
 
 #>
 

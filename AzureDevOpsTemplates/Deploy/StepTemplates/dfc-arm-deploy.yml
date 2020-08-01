@@ -8,7 +8,7 @@ parameters:
   ParentBusinessTag: ''
   ResourceGroup: ''
   ServiceOfferingTag: ''
-  SetTagsScriptUrl: 'https://raw.githubusercontent.com/olusola-adio/mon-devops/master/PSScripts/Set-EsfaResourceGroupTags.ps1'
+  SetTagsScriptUrl: 'https://raw.githubusercontent.com/olusola-adio/dfc-devops/master/PSScripts/Set-EsfaResourceGroupTags.ps1'
   SetTagsScriptFilePath: '$(System.DefaultWorkingDirectory)\Set-EsfaResourceGroupTags.ps1'
 
 steps:
@@ -36,7 +36,7 @@ steps:
   inputs:
     azureSubscription: ${{ parameters.AzureSubscription }}
     resourceGroupName: '${{ parameters.ResourceGroup }}'
-    location: 'North Europe'
+    location: 'West Europe'
     csmFile: '${{ parameters.ArmTemplateRoot }}/template.json'
     csmParametersFile: '${{ parameters.ArmTemplateRoot }}/parameters.json'
     deploymentOutputs: ARMOutputs

@@ -1,13 +1,13 @@
 # common variables
-$ResourceGroupName = "mon-test-template-rg"
+$ResourceGroupName = "dwp-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\app-gateway-v2.json"
 
 Describe "App Gateway Deployment Tests" -Tag "Acceptance" {
   
   Context "When an app gateway is deployed with just a single pool" {
     $TemplateParameters = @{
-      appGatewayName      = "mon-foo-bar-ag"
-      subnetRef           = "/subscriptions/bcf9fd2c-cdb6-4af1-9890-9c12785ee2f9/resourceGroups/mon-foo-bar-rg/providers/Microsoft.Network/virtualNetworks/mon-foo-bar-vnet/subnets/appgateway"
+      appGatewayName      = "dfc-foo-bar-ag"
+      subnetRef           = "/subscriptions/bcf9fd2c-cdb6-4af1-9890-9c12785ee2f9/resourceGroups/dfc-foo-bar-rg/providers/Microsoft.Network/virtualNetworks/dfc-foo-bar-vnet/subnets/appgateway"
       backendPools        = @( @{
                                   name = "mypool"
                                   fqdn = "foo.example.net"
@@ -25,7 +25,7 @@ Describe "App Gateway Deployment Tests" -Tag "Acceptance" {
                                   paths       = @( "/dummy/*" )
                             } )
       publicIpAddressId   = "1.2.3.4"
-      userAssignedIdentityName = "mon-test-template-uim"
+      userAssignedIdentityName = "dwp-test-template-asp"
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName

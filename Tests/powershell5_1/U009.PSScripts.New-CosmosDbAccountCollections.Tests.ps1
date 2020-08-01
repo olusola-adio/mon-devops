@@ -93,8 +93,8 @@ Describe "New-CosmosDbAccountCollections unit tests" -Tag "Unit" {
 '@
 
     $DefaultParams = @{ 
-        CosmosDbAccountName = 'mon-foo-bar-cdb'
-        ResourceGroupName   = "mon-foo-bar-rg"
+        CosmosDbAccountName = 'dfc-foo-bar-cdb'
+        ResourceGroupName   = "dfc-foo-bar-rg"
     }
 
     # This test will write to the error stream

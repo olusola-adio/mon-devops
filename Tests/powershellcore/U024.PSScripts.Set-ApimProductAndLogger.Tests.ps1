@@ -10,8 +10,8 @@ Describe "Set-ApimProductAndLogger unit tests" -Tag "Unit" {
     It "Should set product only if no logger passed in" {
 
         $CmdletParameters = @{
-           ApimResourceGroup = "mon-foo-bar-rg"
-           InstanceName = "mon-foo-bar-apim"
+           ApimResourceGroup = "dfc-foo-bar-rg"
+           InstanceName = "dfc-foo-bar-apim"
            ApiId = "bar"
            ApiProductId = "bar-product"
        }
@@ -35,8 +35,8 @@ Describe "Set-ApimProductAndLogger unit tests" -Tag "Unit" {
         }
         
         $CmdletParameters = @{
-           ApimResourceGroup = "mon-foo-bar-rg"
-           InstanceName = "mon-foo-bar-apim"
+           ApimResourceGroup = "dfc-foo-bar-rg"
+           InstanceName = "dfc-foo-bar-apim"
            ApiId = "bar"
            ApiProductId = "bar-product"
            ApimLoggerName = "bar-product-logger"
@@ -61,8 +61,8 @@ Describe "Set-ApimProductAndLogger unit tests" -Tag "Unit" {
         }
         
         $CmdletParameters = @{
-           ApimResourceGroup = "mon-foo-bar-rg"
-           InstanceName = "mon-foo-bar-apim"
+           ApimResourceGroup = "dfc-foo-bar-rg"
+           InstanceName = "dfc-foo-bar-apim"
            ApiId = "bar"
            ApiProductId = "bar-product"
            ApimLoggerName = "bar-product-logger"
@@ -83,8 +83,8 @@ Describe "Set-ApimProductAndLogger unit tests" -Tag "Unit" {
         Mock Get-AzApiManagementDiagnostic
         
         $CmdletParameters = @{
-           ApimResourceGroup = "mon-foo-bar-rg"
-           InstanceName = "mon-foo-bar-apim"
+           ApimResourceGroup = "dfc-foo-bar-rg"
+           InstanceName = "dfc-foo-bar-apim"
            ApiId = "bar"
            ApiProductId = "bar-product"
            ApimLoggerName = "bar-product-logger"

@@ -15,7 +15,7 @@ The Storage Account to create the table upon
 The name of the table to create
 
 .EXAMPLE
-New-TableOnStorageAccount.ps1 -StorageAccountName monfoostr -StorageAccountKey not-a-real-key -TableName aTableToCreate
+New-TableOnStorageAccount.ps1 -StorageAccountName dfcfoostr -StorageAccountKey not-a-real-key -TableName aTableToCreate
 
 #>
 

@@ -6,8 +6,8 @@ function Invoke-Sqlcmd {}
 Describe "Invoke-SqlScript unit tests" -Tag "Unit" {
 
     $params = @{
-        SQLServerFqdn     = "mon-foo-bar-sql"
-        SQLDatabase       = "mon-foo-bar-db" 
+        SQLServerFqdn     = "dfc-foo-bar-sql"
+        SQLDatabase       = "dfc-foo-bar-db" 
         SQLAdminUsername  = "admin"
         SQLAdminPassword  = "not-a-real-password"
         SQLScript         = "$TestDrive\Mock.sql"

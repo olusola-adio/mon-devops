@@ -18,10 +18,10 @@ Name of the environment, select from a valid ESFA environment name tag: Producti
 Name of the business to which the resources belong, select from either National Careers Service or National Careers Service (PP)
 
 .PARAMETER ServiceOffering
-Name of the service offering to which the resources belong, select from Course Directory, Course Directory (PP), Data Sharing Service, Data Sharing Service (PP), Digital First Career Service (MONS) Website, Digital First Career Service (MONS) Website (PP), NCS Website or NCS Website (PP)
+Name of the service offering to which the resources belong, select from Course Directory, Course Directory (PP), Data Sharing Service, Data Sharing Service (PP), Digital First Career Service (DFCS) Website, Logion Website, NCS Website or NCS Website (PP)
 
 .EXAMPLE
-Set-EsfaResourceGroupTags -ResourceGroupName "mon-dev-foobar-rg" -Environment "Dev/Test" -ParentBusiness "National Careers Service" -ServiceOffering "Course Directory"
+Set-EsfaResourceGroupTags -ResourceGroupName "dfc-dev-foobar-rg" -Environment "Dev/Test" -ParentBusiness "National Careers Service" -ServiceOffering "Course Directory"
 #>
 
 [CmdletBinding()]
@@ -29,15 +29,15 @@ param(
     [Parameter(Mandatory=$true)]
     [string]$ResourceGroupName,
     [Parameter(Mandatory=$false)]
-    [string]$Location = "UK South",
+    [string]$Location = "West Europe",
     [Parameter(Mandatory=$true)]
     [ValidateSet("Production", "Pre-Production", "Dev/Test")]
     [string]$Environment,
     [Parameter(Mandatory=$true)]
-    [ValidateSet("Logion Limited", "Logion Limited (PP)")]
+    [ValidateSet("National Careers Service", "National Careers Service (PP)")]
     [string]$ParentBusiness,
     [Parameter(Mandatory=$true)]
-    [ValidateSet("Course Directory", "Course Directory (PP)", "Data Sharing Service", "Data Sharing Service (PP)", "Digital First Career Service (MONS) Website", "Digital First Career Service (MONS) Website (PP)", "Logion Website", "Logion Website (PP)")]
+    [ValidateSet("Course Directory", "Course Directory (PP)", "Data Sharing Service", "Data Sharing Service (PP)", "Digital First Career Service (DFCS) Website", "Logion Website", "NCS Website", "NCS Website (PP)")]
     [string]$ServiceOffering
 )
 

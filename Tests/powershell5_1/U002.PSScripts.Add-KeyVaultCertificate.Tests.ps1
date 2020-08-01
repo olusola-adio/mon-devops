@@ -5,7 +5,7 @@ Describe "Add-KeyVaultCertificate unit tests" -Tag "Unit" {
     It "Should open a pfx file and understand the contents" {
         Mock Set-AzureKeyVaultSecret
 
-        $kvname   = "mon-foo-kv"
+        $kvname   = "dfc-foo-kv"
         $secname  = "foocert"
         $certdate = Get-Date "25 January 2020 11:51:04"
 

@@ -1,12 +1,12 @@
 # common variables
-$ResourceGroupName = "mon-test-template-rg"
+$ResourceGroupName = "dwp-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\cosmos-db.json"
 
 Describe "Key Vault Deployment Tests" -Tag "Acceptance" {
   
   Context "Deploying Cosmos DB with SQL API, Eventual consistency" {
     $TemplateParameters = @{
-      cosmosDbName            = "mon-foo-bar-cdb-01"
+      cosmosDbName            = "dfc-foo-bar-cdb-01"
       cosmosApiType           = "SQL"
       defaultConsistencyLevel = "Eventual"
     }
@@ -26,7 +26,7 @@ Describe "Key Vault Deployment Tests" -Tag "Acceptance" {
 
   Context "Deploying Cosmos DB with Gremlin API, Session consistency" {
     $TemplateParameters = @{
-      cosmosDbName            = "mon-foo-bar-cdb-02"
+      cosmosDbName            = "dfc-foo-bar-cdb-02"
       cosmosApiType           = "Gremlin"
       defaultConsistencyLevel = "Session"
     }
@@ -46,7 +46,7 @@ Describe "Key Vault Deployment Tests" -Tag "Acceptance" {
 
   Context "Deploying Cosmos DB with MongoDB API, BoundedStaleness consistency" {
     $TemplateParameters = @{
-      cosmosDbName            = "mon-foo-bar-cdb-03"
+      cosmosDbName            = "dfc-foo-bar-cdb-03"
       cosmosApiType           = "MongoDB"
       defaultConsistencyLevel = "BoundedStaleness"
     }
@@ -66,7 +66,7 @@ Describe "Key Vault Deployment Tests" -Tag "Acceptance" {
 
   Context "Deploying Cosmos DB with Cassandra API, Strong consistency" {
     $TemplateParameters = @{
-      cosmosDbName            = "mon-foo-bar-cdb-04"
+      cosmosDbName            = "dfc-foo-bar-cdb-04"
       cosmosApiType           = "Cassandra"
       defaultConsistencyLevel = "Strong"
     }
@@ -86,7 +86,7 @@ Describe "Key Vault Deployment Tests" -Tag "Acceptance" {
 
   Context "Deploying Cosmos DB with Table API, ConsistentPrefix consistency" {
     $TemplateParameters = @{
-      cosmosDbName            = "mon-foo-bar-cdb-05"
+      cosmosDbName            = "dfc-foo-bar-cdb-05"
       cosmosApiType           = "Table"
       defaultConsistencyLevel = "ConsistentPrefix"
     }

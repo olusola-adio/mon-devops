@@ -13,7 +13,7 @@ Normally contains dummy values unless it is a dependancy in which case a valid v
 The template file to test
 
 .PARAMETER ResourceGroupName
-The name of the resource group to test the ARM template against.  Defaults to mon-test-template-rg
+The name of the resource group to test the ARM template against.  Defaults to dwp-test-template-rg
 
 .EXAMPLE
 Test-ArmTemplate.ps1 -ParameterFile paramaters.json -TemplateFile template.json
@@ -23,7 +23,7 @@ Test-ArmTemplate.ps1 -ParameterFile paramaters.json -TemplateFile template.json
 Param(
     [string] $ParameterFile,
     [string] $TemplateFile,
-    [string] $ResourceGroupName = "mon-test-template-rg"
+    [string] $ResourceGroupName = "dwp-test-template-rg"
 )
 
 $DeploymentParameters = @{
@@ -40,7 +40,6 @@ if ($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent) {
     $DeploymentParameters
 
 }
-$DebugPreference = "Continue"
 $Result = Test-AzureRmResourceGroupDeployment @DeploymentParameters
 if ($Result.Count -gt 0) {
 
@@ -48,4 +47,3 @@ if ($Result.Count -gt 0) {
     throw "Template is invalid"
 
 }
-$DebugPreference = "SilentlyContinue"

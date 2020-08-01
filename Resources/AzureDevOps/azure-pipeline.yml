@@ -1,15 +1,15 @@
 variables:
 - name: SolutionBaseName
-  value: MON.DevOps
+  value: Dfc.DevOps
 
 resources:
   repositories:
   - repository: self
-  - repository: mon-devops
+  - repository: dfc-devops
     type: github
-    name: olusola-adio/mon-devops
-    endpoint: 'olusola-adio'
-    ref: refs/tags/v1.11.1
+    name: olusola-adio/dfc-devops
+    endpoint: olusola-adio
+    ref: refs/tags/v1.9.0
 
 pool:
   vmImage: 'windows-latest'
@@ -28,17 +28,16 @@ pr:
 stages:
 - template: StageTemplates/RunTests.yml
   parameters:
-    AzureSubscription: 'mon(bcf9fd2c-cdb6-4af1-9890-9c12785ee2f9)'
+    AzureSubscription: 'dwp(bcf9fd2c-cdb6-4af1-9890-9c12785ee2f9)'
     Powershell5CodeCoveragePercentage: 45
     PowershellCoreCodeCoveragePercentage: 25
 
 - stage: BuildAndPublishContainers
-  condition: false
-  #condition: or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.Reason'], 'PullRequest'))
+  condition: or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.Reason'], 'PullRequest'))
   dependsOn: []
   variables:
-  - group: KeyVault - mon-dev-shared-kv
-  - group: mon-shared-dev
+  - group: KeyVault - dfc-dev-shared-kv
+  - group: dfc-shared-dev
   jobs:
   - template: JobTemplates\BuildAndPublishLinuxContainers.yml
     parameters:
@@ -46,20 +45,18 @@ stages:
       ContainerRegistryPassword: $(ContainerRegistryPassword)
 
 - stage: DeployAzureDevOpsContainers
-  condition: false
-  #condition: and(succeeded('BuildAndPublishContainers'), eq(variables['Build.SourceBranch'], 'refs/heads/master'), ne(variables['Build.Reason'], 'PullRequest'))
+  condition: and(succeeded('BuildAndPublishContainers'), eq(variables['Build.SourceBranch'], 'refs/heads/master'), ne(variables['Build.Reason'], 'PullRequest'))
   dependsOn: BuildAndPublishContainers
   variables:
   - template: VariableTemplates\SharedEnvironmentVariables.yml
   - template: VariableTemplates\DevEnvironmentVariables.yml
-  - group: KeyVault - mon-dev-shared-kv
-  - group: mon-shared-dev
-  - group: mon-devops-dev
+  - group: KeyVault - dfc-dev-shared-kv
+  - group: dfc-shared-dev
   jobs:
   - template: JobTemplates\DeployContainers.yml
     parameters:
       AksResourceGroup: $(sharedResourceGroup)
       AzurePatToken: $(AzureDevOpsAgentPatToken)
-      AzureSubscriptionEndpoint: 'mon(bcf9fd2c-cdb6-4af1-9890-9c12785ee2f9)'
+      AzureSubscriptionEndpoint: 'dwp(bcf9fd2c-cdb6-4af1-9890-9c12785ee2f9)'
       Environment: DEV_SHARED
       KubernetesCluster: $(sharedAksCluster)

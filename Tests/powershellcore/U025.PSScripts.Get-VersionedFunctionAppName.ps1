@@ -16,17 +16,17 @@ Describe "Get-VersionedFunctionAppName" -Tag "Unit" {
 
     Context "When getting a versioned app" {
         $testData = @(
-            @{ SourceBranch = "dev"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "mon-dev-test-v1-fa" }
-            @{ SourceBranch = "master"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "mon-dev-test-v1-fa" }
-            @{ SourceBranch = "v1-dev"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "mon-dev-test-v1-fa" }
-            @{ SourceBranch = "v1-master"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "mon-dev-test-v1-fa" }
-            @{ SourceBranch = "dev-v1"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "mon-dev-test-v1-fa" }
-            @{ SourceBranch = "master-v1"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "mon-dev-test-v1-fa" }
-            @{ SourceBranch = "v999999-dev"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "mon-dev-test-v999999-fa" }
-            @{ SourceBranch = "v999999-master"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "mon-dev-test-v999999-fa" }
-            @{ SourceBranch = "dev-v999999"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "mon-dev-test-v999999-fa" }
-            @{ SourceBranch = "master-v999999"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "mon-dev-test-v999999-fa" }
-            @{ SourceBranch = "dev-v5"; FunctionBaseName = "mon-dev-draft-component-fa"; ExpectedResult = "mon-dev-draft-component-v5-fa" }
+            @{ SourceBranch = "dev"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "dfc-dev-test-v1-fa" }
+            @{ SourceBranch = "master"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "dfc-dev-test-v1-fa" }
+            @{ SourceBranch = "v1-dev"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "dfc-dev-test-v1-fa" }
+            @{ SourceBranch = "v1-master"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "dfc-dev-test-v1-fa" }
+            @{ SourceBranch = "dev-v1"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "dfc-dev-test-v1-fa" }
+            @{ SourceBranch = "master-v1"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "dfc-dev-test-v1-fa" }
+            @{ SourceBranch = "v999999-dev"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "dfc-dev-test-v999999-fa" }
+            @{ SourceBranch = "v999999-master"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "dfc-dev-test-v999999-fa" }
+            @{ SourceBranch = "dev-v999999"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "dfc-dev-test-v999999-fa" }
+            @{ SourceBranch = "master-v999999"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "dfc-dev-test-v999999-fa" }
+            @{ SourceBranch = "dev-v5"; FunctionBaseName = "dfc-dev-draft-component-fa"; ExpectedResult = "dfc-dev-draft-component-v5-fa" }
         )
 
         It "Should return '<ExpectedResult>' for branch <SourceBranch>' and functionName '<FunctionBaseName>'" -TestCases $testData {
@@ -45,16 +45,16 @@ Describe "Get-VersionedFunctionAppName" -Tag "Unit" {
 
     Context "When getting an api version" {
         $testData = @(
-            @{ SourceBranch = "dev"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "v1" }
-            @{ SourceBranch = "master"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "v1" }
-            @{ SourceBranch = "v1-dev"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "v1" }
-            @{ SourceBranch = "v1-master"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "v1" }
-            @{ SourceBranch = "dev-v1"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "v1" }
-            @{ SourceBranch = "master-v1"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "v1" }
-            @{ SourceBranch = "v999999-dev"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "v999999" }
-            @{ SourceBranch = "v999999-master"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "v999999" }
-            @{ SourceBranch = "dev-v999999"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "v999999" }
-            @{ SourceBranch = "master-v999999"; FunctionBaseName = "mon-dev-test-fa"; ExpectedResult = "v999999" }
+            @{ SourceBranch = "dev"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "v1" }
+            @{ SourceBranch = "master"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "v1" }
+            @{ SourceBranch = "v1-dev"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "v1" }
+            @{ SourceBranch = "v1-master"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "v1" }
+            @{ SourceBranch = "dev-v1"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "v1" }
+            @{ SourceBranch = "master-v1"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "v1" }
+            @{ SourceBranch = "v999999-dev"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "v999999" }
+            @{ SourceBranch = "v999999-master"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "v999999" }
+            @{ SourceBranch = "dev-v999999"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "v999999" }
+            @{ SourceBranch = "master-v999999"; FunctionBaseName = "dfc-dev-test-fa"; ExpectedResult = "v999999" }
         )
 
         It "Should return '<ExpectedResult>' for branch <SourceBranch>' and functionName '<FunctionBaseName>'" -TestCases $testData {

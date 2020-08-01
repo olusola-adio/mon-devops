@@ -6,7 +6,7 @@ An AzureDevOps agent that includes the OWASP ZAP Testing utility
 
 ### From an Azure DevOps agent
 
-This image is deployed into the MON Azure Kubernetes Service as part of the build definition for this repo.  Using the mon-owasp-test Task Group you can run a test on the agent and publish the results to the Tests tab of the Release.  The command to trigger the test you wish to run can be passed in using the OwaspTestCommand parameter.  Tests can use either the zap-cli or one of the build in test scripts such as zap-baseline.  See the following links for more info [zap-cli](https://github.com/Grunny/zap-cli), [zap-baseline](https://github.com/zaproxy/zaproxy/wiki/ZAP-Baseline-Scan).
+This image is deployed into the DFC Azure Kubernetes Service as part of the build definition for this repo.  Using the dfc-owasp-test Task Group you can run a test on the agent and publish the results to the Tests tab of the Release.  The command to trigger the test you wish to run can be passed in using the OwaspTestCommand parameter.  Tests can use either the zap-cli or one of the build in test scripts such as zap-baseline.  See the following links for more info [zap-cli](https://github.com/Grunny/zap-cli), [zap-baseline](https://github.com/zaproxy/zaproxy/wiki/ZAP-Baseline-Scan).
 
 ### Run locally
 
@@ -16,12 +16,12 @@ cd DockerFiles\AzureDevOpsAgents
 docker build -t ncs.azuredevopsagents.owasp --file owasp-agent.Dockerfile .
 ```
 
-Or you can pull the image from the mondevsharedcr repository
+Or you can pull the image from the dfcdevsharedcr repository
 Install the az command line tools
 ```
 az login
-az acr login --name mondevsharedcr
-docker pull mondevsharedcr.azurecr.io/ncs.azuredevopsagents.owasp:<tag>
+az acr login --name dfcdevsharedcr
+docker pull dfcdevsharedcr.azurecr.io/ncs.azuredevopsagents.owasp:<tag>
 ```
 
 In the Azure DevOps portal go to Organisation Settings > Agent Pools > Add Pool and add a pool called 'NCS - OWASP'.  Then go to your user profile > Personal Access Tokens > New Token and create a token with Read and Manage permissions on Agent Pools and Read on Builds.
@@ -42,7 +42,7 @@ Assuming you've installed the az cli (instructions [here](https://docs.microsoft
 ```
 az login
 az account set --subscription SFA-CDH-Dev/Test
-az aks get-credentials --resource-group mon-dev-shared-rg --name mon-dev-shared-aks --admin
+az aks get-credentials --resource-group dfc-dev-shared-rg --name dfc-dev-shared-aks --admin
 ```
 
 and test that you've connected successfully by running `kubectl get nodes`

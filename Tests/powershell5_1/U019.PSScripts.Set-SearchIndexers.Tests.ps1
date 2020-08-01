@@ -32,7 +32,7 @@ Describe "Set-SearchIndexers unit tests" -Tag "Unit" {
 
     $DefaultParams = @{ 
         SearchName        = 'mock'
-        ResourceGroupName = "mon-foo-bar-rg"
+        ResourceGroupName = "dfc-foo-bar-rg"
     }
 
     # This test will write to the error stream

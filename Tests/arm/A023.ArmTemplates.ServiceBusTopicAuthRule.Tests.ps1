@@ -1,12 +1,12 @@
 # common variables
-$ResourceGroupName = "mon-test-template-rg"
+$ResourceGroupName = "dwp-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\ServiceBus\servicebus-topic-authrule.json"
 
 Describe "Service Bus Topic Authorization Rule (shared access policy) Deployment Tests" -Tag "Acceptance" {
   
   Context "When deploying a shared access policy to a Service Bus Topic" {
     $TemplateParameters = @{
-      servicebusName        = "mon-foo-bar-ns"
+      servicebusName        = "dfc-foo-bar-ns"
       topicName             = "topic-name"
       authorizationRuleName = "myrule"
       rights                = @( "listen" )

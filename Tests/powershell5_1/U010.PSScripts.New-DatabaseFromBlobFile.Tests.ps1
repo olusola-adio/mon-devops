@@ -1,13 +1,13 @@
 Push-Location -Path $PSScriptRoot\..\..\PSScripts\
 
 $params = @{
-    ResourceGroupName = "mon-foo-bar-rg"
-    SQLServerName     = "mon-foo-bar-sql"
-    SQLDatabase       = "mon-foo-bar-db" 
+    ResourceGroupName = "dfc-foo-bar-rg"
+    SQLServerName     = "dfc-foo-bar-sql"
+    SQLDatabase       = "dfc-foo-bar-db" 
     SQLAdminUsername  = "admin"
     SQLAdminPassword  = "not-a-real-password"
     StorageAccountKey = "not-a-real-key"
-    StorageUrl        = "https://monfoobarstr.blob.core.windows.net/backup/db.bacpac"
+    StorageUrl        = "https://dfcfoobarstr.blob.core.windows.net/backup/db.bacpac"
 }
 
 # solves CommandNotFoundException
@@ -33,7 +33,7 @@ Describe "New-DatabaseFromBlobFile unit tests" -Tag "Unit" {
     }
 
     It "Should add database to elastic pool if one is specified" {
-        $params['ElasticPool'] = "mon-foo-bar-epl"
+        $params['ElasticPool'] = "dfc-foo-bar-epl"
 
         .\New-DatabaseFromBlobFile @params
 

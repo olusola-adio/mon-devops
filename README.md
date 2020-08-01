@@ -1,8 +1,8 @@
-# mon-devops
+# dfc-devops
 
-[![Build Status](https://dev.azure.com/olusolaadio/mon-olu/_apis/build/status/olusola-adio.mon-devops?branchName=master)](https://dev.azure.com/olusolaadio/mon-olu/_build/latest?definitionId=7&branchName=master)
+[![Build status](https://sfa-gov-uk.visualstudio.com/Digital%20First%20Careers/_apis/build/status/DFC%20Shared/dfc-devops?branchName=master)](https://sfa-gov-uk.visualstudio.com/Digital%20First%20Careers/_build/latest?definitionId=1301)  
 
-ARM templates, PowerShell modules and scripts, policies, documentation and other resources used in the MON Azure pipelines
+ARM templates, PowerShell modules and scripts, policies, documentation and other resources used in the DFC Azure pipelines
 
 ## ARM Templates
 
