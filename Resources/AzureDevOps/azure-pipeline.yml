@@ -1,0 +1,65 @@
+variables:
+- name: SolutionBaseName
+  value: MON.DevOps
+
+resources:
+  repositories:
+  - repository: self
+  - repository: mon-devops
+    type: github
+    name: olusola-adio/mon-devops
+    endpoint: 'olusola-adio'
+    ref: refs/tags/v1.11.1
+
+pool:
+  vmImage: 'windows-latest'
+
+trigger:
+  branches:
+    include:
+    - master
+
+pr:
+  branches:
+    include:
+    - master
+
+
+stages:
+- template: StageTemplates/RunTests.yml
+  parameters:
+    AzureSubscription: 'mon(bcf9fd2c-cdb6-4af1-9890-9c12785ee2f9)'
+    Powershell5CodeCoveragePercentage: 45
+    PowershellCoreCodeCoveragePercentage: 25
+
+- stage: BuildAndPublishContainers
+  condition: false
+  #condition: or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.Reason'], 'PullRequest'))
+  dependsOn: []
+  variables:
+  - group: KeyVault - mon-dev-shared-kv
+  - group: mon-shared-dev
+  jobs:
+  - template: JobTemplates\BuildAndPublishLinuxContainers.yml
+    parameters:
+      ContainerRegistryAdminUser: $(ContainerRegistryAdminUser)
+      ContainerRegistryPassword: $(ContainerRegistryPassword)
+
+- stage: DeployAzureDevOpsContainers
+  condition: false
+  #condition: and(succeeded('BuildAndPublishContainers'), eq(variables['Build.SourceBranch'], 'refs/heads/master'), ne(variables['Build.Reason'], 'PullRequest'))
+  dependsOn: BuildAndPublishContainers
+  variables:
+  - template: VariableTemplates\SharedEnvironmentVariables.yml
+  - template: VariableTemplates\DevEnvironmentVariables.yml
+  - group: KeyVault - mon-dev-shared-kv
+  - group: mon-shared-dev
+  - group: mon-devops-dev
+  jobs:
+  - template: JobTemplates\DeployContainers.yml
+    parameters:
+      AksResourceGroup: $(sharedResourceGroup)
+      AzurePatToken: $(AzureDevOpsAgentPatToken)
+      AzureSubscriptionEndpoint: 'mon(bcf9fd2c-cdb6-4af1-9890-9c12785ee2f9)'
+      Environment: DEV_SHARED
+      KubernetesCluster: $(sharedAksCluster)

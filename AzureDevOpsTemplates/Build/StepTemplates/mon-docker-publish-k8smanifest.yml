@@ -1,0 +1,49 @@
+parameters:
+  ContainerRegistryAdminUser: ''
+  ContainerRegistryPassword: ''
+  DockerfileContext: ''
+  DockerfileName: ''
+  ImageBaseName: ''
+  ImageTag: ''
+  ManifestFilePath: ''
+
+steps:
+- script: |
+    cd ${{ parameters.DockerfileContext }}
+    ImageName=${{ parameters.ImageBaseName }}:${{ parameters.ImageTag }}
+    # Lowercase the AppImage name to conform to Docker Image naming constraints
+    ImageName=${ImageName,,}
+    docker build -t ${{ parameters.ContainerRegistryAdminUser }}.azurecr.io/$ImageName --file ${{ parameters.DockerfileName }} .
+  displayName: 'Build ${{ parameters.ImageBaseName }}:${{ parameters.ImageTag }} image'
+- script: |
+    docker login -u ${{ parameters.ContainerRegistryAdminUser }} -p ${{ parameters.ContainerRegistryPassword }} ${{ parameters.ContainerRegistryAdminUser }}.azurecr.io
+    ImageName=${{ parameters.ImageBaseName }}:${{ parameters.ImageTag }}
+    # Lowercase the AppImage name to conform to Docker Image naming constraints
+    ImageName=${ImageName,,}
+    docker push ${{ parameters.ContainerRegistryAdminUser }}.azurecr.io/$ImageName
+  displayName: 'Publish ${{ parameters.ImageBaseName }}:${{ parameters.ImageTag }} image'
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+- script: |
+    cd $(Build.ArtifactStagingDirectory)
+    mkdir ${{ parameters.ImageBaseName }}
+    cd ${{ parameters.DockerfileContext }}
+    dir ${{ parameters.DockerfileContext }}
+    dir ${{ parameters.DockerfileContext }}/${{ parameters.ManifestFilePath }}
+  displayName: 'Create dir $(Build.ArtifactStagingDirectory)/${{ parameters.ImageBaseName }}'
+  condition: ne('${{ parameters.DockerfileContext }}/${{ parameters.ManifestFilePath }}', '')
+- script: dir ${{ parameters.DockerfileContext }}
+- script: dir ${{ parameters.DockerfileContext }}/${{ parameters.ManifestFilePath }}
+- task: CopyFiles@2
+  displayName: 'Copy Manifest File to: $(Build.ArtifactStagingDirectory)/${{ parameters.ImageBaseName }}'
+  condition: ne('${{ parameters.DockerfileContext }}/${{ parameters.ManifestFilePath }}', '')
+  inputs:
+    Contents: '${{ parameters.DockerfileContext }}/${{ parameters.ManifestFilePath }}'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/${{ parameters.ImageBaseName }}'
+    flattenFolders: true
+- script: dir '$(Build.ArtifactStagingDirectory)/${{ parameters.ImageBaseName }}'
+- task: PublishPipelineArtifact@0
+  displayName: Publish Pipeline Artifact
+  condition: ne('${{ parameters.DockerfileContext }}/${{ parameters.ManifestFilePath }}', '')
+  inputs:
+    targetPath: $(Build.ArtifactStagingDirectory)/${{ parameters.ImageBaseName }}
+    artifactName: ${{ parameters.ImageBaseName }}

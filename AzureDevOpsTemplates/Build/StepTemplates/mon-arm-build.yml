@@ -1,0 +1,37 @@
+parameters:
+  ArmTemplateRoot: ''
+  SolutionBaseName: ''
+  AzureSubscription: 'mon(bcf9fd2c-cdb6-4af1-9890-9c12785ee2f9)'
+  TestArmTemplateScriptUrl: https://raw.githubusercontent.com/olusola-adio/mon-devops/master/PSScripts/Test-ArmTemplate.ps1
+  TestArmTemplateScriptFilePath: $(System.DefaultWorkingDirectory)\Test-ArmTemplate.ps1
+  TokenizeTestParameters: false
+
+steps:
+- task: Tokenization@2
+  condition: ${{ parameters.TokenizeTestParameters }}
+  displayName: 'Tokenization: Transform file test-parameters.json'
+  inputs:
+    SourcePath: '${{ parameters.ArmTemplateRoot }}'
+    TargetFileNames: test-parameters.json
+
+- task: PowerShell@2
+  name: DownloadTestArmTemplateScript
+  displayName: 'Download Test-ArmTemplate script'
+  inputs:
+    targetType: 'inline'
+    script: Invoke-WebRequest -Uri ${{ parameters.TestArmTemplateScriptUrl }} -OutFile ${{ parameters.TestArmTemplateScriptFilePath }}
+
+- task: AzurePowerShell@3
+  displayName: 'Test Arm Template'
+  inputs:
+    azureSubscription: ${{ parameters.AzureSubscription }}
+    scriptType: filePath
+    scriptPath: ${{ parameters.TestArmTemplateScriptFilePath }}
+    scriptArguments: -ParameterFile '${{ parameters.ArmTemplateRoot }}\test-parameters.json' -TemplateFile '${{ parameters.ArmTemplateRoot }}\template.json' -Verbose
+    azurePowerShellVersion: LatestVersion
+    
+- task: PublishPipelineArtifact@0
+  displayName: Publish Pipeline Artifact
+  inputs:
+    targetPath: ${{ parameters.ArmTemplateRoot }}
+    artifactName: ${{ parameters.SolutionBaseName }}.Resources.ArmTemplates
