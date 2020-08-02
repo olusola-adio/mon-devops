@@ -8,6 +8,8 @@ Describe "Service Bus Topic Deployment Tests" -Tag "Acceptance" {
     $TemplateParameters = @{
       serviceBusNamespaceName = "mon-foo-bar-ns"
       serviceBusTopicName     = "topic-name"
+      messageDefaultTTL       = "P90D"
+      topicMaxSizeMb          = 1024
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName
@@ -16,7 +18,7 @@ Describe "Service Bus Topic Deployment Tests" -Tag "Acceptance" {
     }
   
     It "Should be deployed successfully" {
-      $output = Test-AzResourceGroupDeployment @TestTemplateParams
+      $output = Test-AzureRmResourceGroupDeployment @TestTemplateParams
       $output | Should -Be $null
     }
 
