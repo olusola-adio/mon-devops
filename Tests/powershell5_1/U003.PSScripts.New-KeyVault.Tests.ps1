@@ -12,7 +12,7 @@ Describe "New-KeyVault unit tests" -Tag "Unit" {
     It "Should create a key vault if one does not exist" {
         Mock Get-AzureRmKeyVault { return $null }
 
-        .\New-KeyVault -keyVaultName $kvname -ResourceGroupName $rgname
+        .\..\..\PSScripts\New-KeyVault -keyVaultName $kvname -ResourceGroupName $rgname
 
         Assert-MockCalled Get-AzureRmKeyVault -Exactly 1 -Scope It
         Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
@@ -23,7 +23,7 @@ Describe "New-KeyVault unit tests" -Tag "Unit" {
     It "Should not create anything if the key vault already exist" {
         Mock Get-AzureRmKeyVault { return ConvertFrom-Json '{ "VaultName": "mon-foobar-kv", "ResourceGroupName": "mon-foobar-rg", "Location": "northeurope" }' }
 
-        .\New-KeyVault -keyVaultName $kvname -ResourceGroupName $rgname
+        .\..\..\PSScripts\New-KeyVault -keyVaultName $kvname -ResourceGroupName $rgname
 
         Assert-MockCalled Get-AzureRmKeyVault -Exactly 1 -Scope It
         Assert-MockCalled Get-AzureRmResourceGroup -Exactly 0 -Scope It
