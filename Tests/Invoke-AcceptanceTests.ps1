@@ -44,10 +44,14 @@ $TestParameters = @{
 # }
 
 # Invoke tests
-$Result = Invoke-Pester -Tag "Acceptance" -Path "$PSScriptRoot\arm" 
+#$Result = Invoke-Pester -Tag "Acceptance" -Path "$PSScriptRoot\arm" 
 
 
 # report failures
 # if ($Result.FailedCount -ne 0) { 
 #     Write-Error "Pester returned $($result.FailedCount) errors"
 # }
+
+
+
+Invoke-Pester -Script "$PSScriptRoot\arm" -PassThru -Verbose -OutputFile "$PSScriptRoot\TEST-Acceptance.xml" -OutputFormat NUnitXml -Show All
