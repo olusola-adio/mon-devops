@@ -22,23 +22,6 @@ Invoke-UnitTests.ps1
 param ()
 
 
-Install-Module -Name Pester -RequiredVersion 4.10.1 -Force -SkipPublisherCheck
-
-Import-Module -Name Pester -Scope Local
-
-$pesterModules = @( Get-Module -Name "Pester" -ErrorAction "SilentlyContinue" );
-if( ($null -eq $pesterModules) -or ($pesterModules.Length -eq 0) )
-{
-    throw "no pester module loaded!";
-}
-if( $pesterModules.Length -gt 1 )
-{
-    throw "multiple pester modules loaded!";
-}
-if( $pesterModules[0].Version -ne ([version] "4.10.1") )
-{
-    throw "unsupported pester version '$($pesterModules[0].Version)'";
-}
 
 $pathToTests = "$PSScriptRoot\powershell5_1"
 $pathToScripts = "$PSScriptRoot\..\PSScripts\*.ps1"
@@ -69,6 +52,25 @@ $TestParameters = @{
     CodeCoverageOutputFile = $codeCoverageResult
 }
 
+
+
+Install-Module -Name Pester -RequiredVersion 4.10.1 -Force -SkipPublisherCheck
+
+Import-Module -Name Pester -Scope Global
+
+$pesterModules = @( Get-Module -Name "Pester" -ErrorAction "SilentlyContinue" );
+if( ($null -eq $pesterModules) -or ($pesterModules.Length -eq 0) )
+{
+    throw "no pester module loaded!";
+}
+if( $pesterModules.Length -gt 1 )
+{
+    throw "multiple pester modules loaded!";
+}
+if( $pesterModules[0].Version -ne ([version] "4.10.1") )
+{
+    throw "unsupported pester version '$($pesterModules[0].Version)'";
+}
 # Invoke tests
 $Result = Invoke-Pester @TestParameters
 
