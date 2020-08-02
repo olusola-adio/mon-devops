@@ -1,7 +1,7 @@
 parameters:
   ArmTemplateRoot: ''
   SolutionBaseName: ''
-  AzureSubscription: 'mon(bcf9fd2c-cdb6-4af1-9890-9c12785ee2f9)'
+  AzureSubscription: 'mon(cb5ab4a7-dd08-4be3-9d7e-9f68ae30f224)'
   TestArmTemplateScriptUrl: https://raw.githubusercontent.com/olusola-adio/mon-devops/master/PSScripts/Test-ArmTemplate.ps1
   TestArmTemplateScriptFilePath: $(System.DefaultWorkingDirectory)\Test-ArmTemplate.ps1
   TokenizeTestParameters: false
