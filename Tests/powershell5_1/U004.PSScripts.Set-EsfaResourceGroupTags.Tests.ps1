@@ -16,9 +16,9 @@ Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
 
         .\..\..\PSScripts\Set-EsfaResourceGroupTags -ResourceGroupName "mon-foobar-rg" -Environment "Dev/Test" -ParentBusiness "Logion Limited" -ServiceOffering "Digital First Career Service (MONS) Website"
 
-        Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
-        Assert-MockCalled New-AzureRmResourceGroup -Exactly 0 -Scope It
-        Assert-MockCalled Set-AzureRmResourceGroup -Exactly 0 -Scope It
+        Should -Invoke  Get-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  New-AzureRmResourceGroup -Exactly 0 -Scope It
+        Should -Invoke  Set-AzureRmResourceGroup -Exactly 0 -Scope It
 
     }
 
@@ -26,9 +26,9 @@ Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
 
         .\..\..\PSScripts\Set-EsfaResourceGroupTags -ResourceGroupName "mon-foobar-rg" -Environment "Dev/Test" -ParentBusiness "Logion Limited" -ServiceOffering "Digital First Career Service (MONS) Website (PP)"
 
-        Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
-        Assert-MockCalled New-AzureRmResourceGroup -Exactly 0 -Scope It
-        Assert-MockCalled Set-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  Get-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  New-AzureRmResourceGroup -Exactly 0 -Scope It
+        Should -Invoke  Set-AzureRmResourceGroup -Exactly 1 -Scope It
 
     }
 
@@ -38,9 +38,9 @@ Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
 
         .\..\..\PSScripts\Set-EsfaResourceGroupTags -ResourceGroupName "mon-barfoo-rg" -Environment "Dev/Test" -ParentBusiness "Logion Limited" -ServiceOffering "Digital First Career Service (MONS) Website (PP)"
 
-        Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
-        Assert-MockCalled New-AzureRmResourceGroup -Exactly 1 -Scope It
-        Assert-MockCalled Set-AzureRmResourceGroup -Exactly 0 -Scope It
+        Should -Invoke  Get-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  New-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  Set-AzureRmResourceGroup -Exactly 0 -Scope It
 
     }
 
@@ -55,9 +55,9 @@ Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
     
         .\..\..\PSScripts\Set-EsfaResourceGroupTags -ResourceGroupName "mon-barfoo-rg" -Environment "Dev/Test" -ParentBusiness "Logion Limited" -ServiceOffering "Digital First Career Service (MONS) Website (PP)"
 
-        Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
-        Assert-MockCalled New-AzureRmResourceGroup -Exactly 0 -Scope It
-        Assert-MockCalled Set-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  Get-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  New-AzureRmResourceGroup -Exactly 0 -Scope It
+        Should -Invoke  Set-AzureRmResourceGroup -Exactly 1 -Scope It
 
     }
 
