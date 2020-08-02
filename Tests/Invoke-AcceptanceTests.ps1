@@ -25,9 +25,9 @@ $TestParameters = @{
 }
 
 
-Install-Module -Name Pester -RequiredVersion 4.10.1 -Force -SkipPublisherCheck
+# Install-Module -Name Pester -RequiredVersion 4.10.1 -Force -SkipPublisherCheck
 
-Import-Module -Name Pester -Scope Global
+# Import-Module -Name Pester -Scope Global
 
 # $pesterModules = @( Get-Module -Name "Pester" -ErrorAction "SilentlyContinue" );
 # if( ($null -eq $pesterModules) -or ($pesterModules.Length -eq 0) )
@@ -44,7 +44,7 @@ Import-Module -Name Pester -Scope Global
 # }
 
 # Invoke tests
-$Result = Invoke-Pester @TestParameters
+$Result = Invoke-Pester -Tag "Acceptance" -Path "$PSScriptRoot\arm" 
 
 # report failures
 if ($Result.FailedCount -ne 0) { 
