@@ -19,6 +19,8 @@ param()
 
 Install-Module -Name Pester -RequiredVersion 4.10.1 -Force -SkipPublisherCheck
 
+Import-Module -Name Pester 
+
 $pesterModules = @( Get-Module -Name "Pester" -ErrorAction "SilentlyContinue" );
 if( ($null -eq $pesterModules) -or ($pesterModules.Length -eq 0) )
 {
