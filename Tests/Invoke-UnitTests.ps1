@@ -74,9 +74,9 @@ $TestParameters = @{
 # Invoke tests
 #$Result = Invoke-Pester @TestParameters
 
-#$Result = Invoke-Pester -Path $pathToTests -CI
+$Result = Invoke-Pester -Path $pathToTests -CI
 
-$Result = Invoke-Pester -Script $pathToTests -PassThru -Verbose -OutputFile $testResult -OutputFormat NUnitXml -CodeCoverage $fullPathToScripts -CodeCoverageOutputFile $codeCoverageResult -Show All
+#$Result = Invoke-Pester -Script $pathToTests -PassThru -Verbose -OutputFile $testResult -OutputFormat NUnitXml -CodeCoverage $fullPathToScripts -CodeCoverageOutputFile $codeCoverageResult -Show All
 
 
 # report failures
