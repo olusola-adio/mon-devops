@@ -55,16 +55,16 @@ jobs:
     inputs:
       targetType: inline
       script: 'Import-Module -Name Az.ApiManagement -Scope Local' # Required when targetType == Inline
-  - task: PowerShell@2
-    displayName: 'Install-Module -Name Az.KeyVault'
-    inputs:
-      targetType: inline
-      script: 'Install-Module -Name Az.KeyVault -Force -AllowClobber ' # Required when targetType == Inline
-  - task: PowerShell@2
-    displayName: 'Import-Module -Name Az.KeyVault'
-    inputs:
-      targetType: inline
-      script: 'Import-Module -Name Az.KeyVault -Scope Local' # Required when targetType == Inline
+  # - task: PowerShell@2
+  #   displayName: 'Install-Module -Name Az.KeyVault'
+  #   inputs:
+  #     targetType: inline
+  #     script: 'Install-Module -Name Az.KeyVault -Force -AllowClobber ' # Required when targetType == Inline
+  # - task: PowerShell@2
+  #   displayName: 'Import-Module -Name Az.KeyVault'
+  #   inputs:
+  #     targetType: inline
+  #     script: 'Import-Module -Name Az.KeyVault -Scope Local' # Required when targetType == Inline
   - task: PowerShell@2
     displayName: 'Install-Module -Name Az.Websites'
     inputs:
