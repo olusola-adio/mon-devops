@@ -80,16 +80,6 @@ jobs:
     inputs:
       targetType: inline
       script: 'Import-Module -Name Az.Websites -Scope Local' # Required when targetType == Inline
-  - task: PowerShell@2
-    displayName: 'Install-Module -Name Az.ServiceBus'
-    inputs:
-      targetType: inline
-      script: 'Install-Module -Name Az.ServiceBus -Force -AllowClobber ' # Required when targetType == Inline
-  - task: PowerShell@2
-    displayName: 'Import-Module -Name Az.ServiceBus'
-    inputs:
-      targetType: inline
-      script: 'Import-Module -Name Az.ServiceBus -Scope Local' # Required when targetType == Inline
   - ${{ if eq(parameters.RequiresAzurePowershell, true) }}:
     - task: AzurePowerShell@3
       displayName: 'AzurePowershell: Invoke-${{ parameters.TestType }}Tests.ps1'
