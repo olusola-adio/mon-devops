@@ -16,6 +16,23 @@ Invoke-QualityTests.ps1
 [CmdletBinding()]
 param()
 
+
+Install-Module -Name Pester -RequiredVersion 4.10.1 -Force -SkipPublisherCheck
+
+$pesterModules = @( Get-Module -Name "Pester" -ErrorAction "SilentlyContinue" );
+if( ($null -eq $pesterModules) -or ($pesterModules.Length -eq 0) )
+{
+    throw "no pester module loaded!";
+}
+if( $pesterModules.Length -gt 1 )
+{
+    throw "multiple pester modules loaded!";
+}
+if( $pesterModules[0].Version -ne ([version] "4.10.1") )
+{
+    throw "unsupported pester version '$($pesterModules[0].Version)'";
+}
+
 $TestParameters = @{
     OutputFormat = 'NUnitXml'
     OutputFile   = "$PSScriptRoot\TEST-Quality.xml"

@@ -21,6 +21,9 @@ Invoke-UnitTests.ps1
 [CmdletBinding()]
 param ()
 
+
+Install-Module -Name Pester -RequiredVersion 4.10.1 -Force -SkipPublisherCheck
+
 $pesterModules = @( Get-Module -Name "Pester" -ErrorAction "SilentlyContinue" );
 if( ($null -eq $pesterModules) -or ($pesterModules.Length -eq 0) )
 {
