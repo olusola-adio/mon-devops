@@ -34,5 +34,5 @@ A deploy template should:
 1. TBC
 
 ### Examples
-    dfc-dotnetframework-build
-    dfc-findacourse-dotnetframework-build-version
+    mon-dotnetframework-build
+    mon-findacourse-dotnetframework-build-version

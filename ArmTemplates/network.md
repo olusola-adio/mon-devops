@@ -6,7 +6,7 @@ Creates a virtual network with subnets and routing table for use with apps, ase 
 
 virtualNetworkPrefix: (required) string
 
-Prefix for the virtual network resources. Usually of the form dfc-env-proj
+Prefix for the virtual network resources. Usually of the form mon-env-proj
 
 virtualNetworkAddressPrefix: (optional) string
 

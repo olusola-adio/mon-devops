@@ -1,6 +1,6 @@
 Push-Location -Path $PSScriptRoot\..\..\PSCoreScripts\
 
-$strname = "dfcfoobarstr"
+$strname = "monfoobarstr"
 
 Describe "Enable-AzureStorageStaticSite unit tests" -Tag "Unit" {
 

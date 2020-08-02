@@ -1,12 +1,12 @@
 # common variables
-$ResourceGroupName = "dwp-test-template-rg"
+$ResourceGroupName = "mon-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\certificate.json"
 
 Describe "Certificate Deployment Tests" -Tag "Acceptance" {
   
   Context "When a single certificate from the key vault is created" {
     $TemplateParameters = @{
-      keyVaultName            = "dfc-foo-bar-kv"
+      keyVaultName            = "mon-foo-bar-kv"
       keyVaultCertificateName = "foo.example.com"
     }
     $TestTemplateParams = @{

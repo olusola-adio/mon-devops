@@ -19,7 +19,7 @@ Array of allowed origins
 Optionally set the max age to cache requests in seconds (defaults to 1 hours)
 
 .EXAMPLE
-Set-CorsOnStorageAccount -StorageAccountName dfcfoobarstr -StorageAccountKey not-a-real-key= -AllowedOrigins foo.example.org
+Set-CorsOnStorageAccount -StorageAccountName monfoobarstr -StorageAccountKey not-a-real-key= -AllowedOrigins foo.example.org
 
 #>
 

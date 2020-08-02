@@ -4,7 +4,7 @@ Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
 
     Mock Get-AzureRmResourceGroup { [PsCustomObject]
         @{
-            ResourceGroupName = "dfc-foobar-rg"
+            ResourceGroupName = "mon-foobar-rg"
             Location = "westeurope"
             Tags = @{"Parent Business" =  "National Careers Service"; "Service Offering" = "Digital First Career Service (DFCS) Website"; "Environment" = "Dev/Test"} 
         }
@@ -14,7 +14,7 @@ Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
 
     It "Should do nothing if a resource group exists with matching tags" {
 
-        .\Set-EsfaResourceGroupTags -ResourceGroupName "dfc-foobar-rg" -Environment "Dev/Test" -ParentBusiness "National Careers Service" -ServiceOffering "Digital First Career Service (DFCS) Website"
+        .\Set-EsfaResourceGroupTags -ResourceGroupName "mon-foobar-rg" -Environment "Dev/Test" -ParentBusiness "National Careers Service" -ServiceOffering "Digital First Career Service (DFCS) Website"
 
         Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
         Assert-MockCalled New-AzureRmResourceGroup -Exactly 0 -Scope It
@@ -24,7 +24,7 @@ Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
 
     It "Should update existing resource group if group exists with different tags" {
 
-        .\Set-EsfaResourceGroupTags -ResourceGroupName "dfc-foobar-rg" -Environment "Dev/Test" -ParentBusiness "National Careers Service" -ServiceOffering "Logion Website"
+        .\Set-EsfaResourceGroupTags -ResourceGroupName "mon-foobar-rg" -Environment "Dev/Test" -ParentBusiness "National Careers Service" -ServiceOffering "Logion Website"
 
         Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
         Assert-MockCalled New-AzureRmResourceGroup -Exactly 0 -Scope It
@@ -36,7 +36,7 @@ Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
 
         Mock Get-AzureRmResourceGroup
 
-        .\Set-EsfaResourceGroupTags -ResourceGroupName "dfc-barfoo-rg" -Environment "Dev/Test" -ParentBusiness "National Careers Service" -ServiceOffering "Logion Website"
+        .\Set-EsfaResourceGroupTags -ResourceGroupName "mon-barfoo-rg" -Environment "Dev/Test" -ParentBusiness "National Careers Service" -ServiceOffering "Logion Website"
 
         Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
         Assert-MockCalled New-AzureRmResourceGroup -Exactly 1 -Scope It
@@ -48,12 +48,12 @@ Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
 
         Mock Get-AzureRmResourceGroup { [PsCustomObject]
             @{
-                ResourceGroupName = "dfc-foobar-rg"
+                ResourceGroupName = "mon-foobar-rg"
                 Location = "westeurope"
             }
         }
     
-        .\Set-EsfaResourceGroupTags -ResourceGroupName "dfc-barfoo-rg" -Environment "Dev/Test" -ParentBusiness "National Careers Service" -ServiceOffering "Logion Website"
+        .\Set-EsfaResourceGroupTags -ResourceGroupName "mon-barfoo-rg" -Environment "Dev/Test" -ParentBusiness "National Careers Service" -ServiceOffering "Logion Website"
 
         Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
         Assert-MockCalled New-AzureRmResourceGroup -Exactly 0 -Scope It

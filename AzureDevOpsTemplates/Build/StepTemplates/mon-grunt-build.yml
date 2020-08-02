@@ -1,13 +1,13 @@
-# dfc-gulp-build steps template
-# Runs gulp task runner and optionally publish output
-# demands: npm & gulp
+# mon-grunt-build steps template
+# Runs grunt task runner and optionally publish output
+# demands: npm & grunt
 
 parameters:
   displayPrefix: '' # Optional prefix to displayName (useful if this is being called multiple times from the same build)
-  npmfolder: '' # folder containing packages.json and gulpfile
-  gulpfile: 'gulpfile.js'
+  npmfolder: '' # folder containing packages.json and gruntfile
+  gruntfile: 'gruntfile.js'
   publishpath: '' # path to publish (publish step does not run if not specified)
-  publishname: 'gulp_artifact'
+  publishname: 'grunt_artifact'
 
 steps:
 
@@ -27,12 +27,12 @@ steps:
     command: install
     workingDir: '${{ parameters.npmfolder }}'
 
-# run gulp
-- task: gulp@1
-  displayName: '${{ parameters.displayPrefix }} gulp'
+# run grunt
+- task: Grunt@0
+  displayName: '${{ parameters.displayPrefix }} grunt'
   inputs:
-    gulpFile: '${{ parameters.npmfolder }}/${{ parameters.gulpfile }}'
-    workingDirectory: '${{ parameters.npmfolder }}/node_modules/gulp/'
+    gruntFile: '${{ parameters.npmfolder }}/${{ parameters.gruntfile }}'
+    workingDirectory: '${{ parameters.npmfolder }}/node_modules/grunt/'
 
 # Publish step only if a publish path has been provided
 - ${{ if parameters.publishpath }}:

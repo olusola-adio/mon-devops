@@ -1,12 +1,12 @@
 # common variables
-$ResourceGroupName = "dwp-test-template-rg"
+$ResourceGroupName = "mon-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\application-insights.json"
 
 Describe "App Service Plan Deployment Tests" -Tag "Acceptance" {
   
   Context "When application insights is deployed with just name" {
     $TemplateParameters = @{
-      appInsightsName = "dfc-foo-bar-ai"
+      appInsightsName = "mon-foo-bar-ai"
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName

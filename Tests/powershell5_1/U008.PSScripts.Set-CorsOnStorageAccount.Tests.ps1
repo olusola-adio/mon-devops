@@ -1,6 +1,6 @@
 Push-Location -Path $PSScriptRoot\..\..\PSScripts\
 
-$strname = "dfcfoobarstr"
+$strname = "monfoobarstr"
 $strkey  = "foo="
 $origin  = "foo.example.org"
 

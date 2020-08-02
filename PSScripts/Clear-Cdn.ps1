@@ -19,7 +19,7 @@ Endpoint within the CDN
 Optional - path to resources to be purged, defaults to all
 
 .EXAMPLE
-Clear-Cdn -CdnName dfc-foo-bar-cdn -EndpointName dfc-foo-bar-assets
+Clear-Cdn -CdnName mon-foo-bar-cdn -EndpointName mon-foo-bar-assets
 
 #>
 

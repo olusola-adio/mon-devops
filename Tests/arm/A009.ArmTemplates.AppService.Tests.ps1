@@ -1,13 +1,13 @@
 # common variables
-$ResourceGroupName = "dwp-test-template-rg"
+$ResourceGroupName = "mon-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\app-service.json"
 
 Describe "App Service Deployment Tests" -Tag "Acceptance" {
   
   Context "When app service is deployed with just name and ASP" {
     $TemplateParameters = @{
-      appServiceName     = "dfc-foo-bar-as"
-      appServicePlanName = "dwp-test-template-asp"
+      appServiceName     = "mon-foo-bar-as"
+      appServicePlanName = "mon-test-template-asp"
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName
@@ -25,8 +25,8 @@ Describe "App Service Deployment Tests" -Tag "Acceptance" {
 
   Context "When app service is deployed as a function app" {
     $TemplateParameters = @{
-      appServiceName     = "dfc-foo-bar-fa"
-      appServicePlanName = "dwp-test-template-asp"
+      appServiceName     = "mon-foo-bar-fa"
+      appServicePlanName = "mon-test-template-asp"
       appServiceType     = "functionapp"
     }
     $TestTemplateParams = @{

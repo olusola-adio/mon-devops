@@ -27,7 +27,7 @@ The full path to the swagger defintion
 (optional)  The path to save the swagger file to if SwaggerSpecificationFile switch is used.
 
 .EXAMPLE
-Import-ApimSwaggerApiDefinition -ApimResourceGroup dfc-foo-bar-rg -InstanceName dfc-foo-bar-apim -ApiName bar -SwaggerSpecificationUrl "https://dfc-foo-bar-fa.azurewebsites.net/api/bar/api-definition" -SwaggerSpecificationFile -OutputFilePath $(System.DefaultWorkingDirectory)/SwaggerFile -Verbose
+Import-ApimSwaggerApiDefinition -ApimResourceGroup mon-foo-bar-rg -InstanceName mon-foo-bar-apim -ApiName bar -SwaggerSpecificationUrl "https://mon-foo-bar-fa.azurewebsites.net/api/bar/api-definition" -SwaggerSpecificationFile -OutputFilePath $(System.DefaultWorkingDirectory)/SwaggerFile -Verbose
 
 #>
 

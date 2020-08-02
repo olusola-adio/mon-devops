@@ -1,12 +1,12 @@
 # common variables
-$ResourceGroupName = "dwp-test-template-rg"
+$ResourceGroupName = "mon-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\keyvault.json"
 
 Describe "Key Vault Deployment Tests" -Tag "Acceptance" {
   
   Context "When KeyVault deployed with just key vault name" {
     $TemplateParameters = @{
-      keyVaultName = "dfc-foo-bar-kv"
+      keyVaultName = "mon-foo-bar-kv"
     }
     $TestTemplateParams = @{
       ResourceGroupName       = $ResourceGroupName

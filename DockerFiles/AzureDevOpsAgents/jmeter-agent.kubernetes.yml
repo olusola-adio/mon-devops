@@ -18,7 +18,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: jmeter-agent
-        image: dfcdevsharedcr.azurecr.io/ncs.azuredevopsagents.jmeter:__NCSAzureDevOpsAgentsJMeterTag__
+        image: mondevsharedcr.azurecr.io/ncs.azuredevopsagents.jmeter:__NCSAzureDevOpsAgentsJMeterTag__
         resources:
           requests:
             cpu: 500m
@@ -34,7 +34,7 @@ spec:
         - name: AZP_TOKEN
           valueFrom: 
             secretKeyRef:
-              name: dfc-azuredevops-pat-token
+              name: mon-azuredevops-pat-token
               key: pattokensecret
         - name: AZP_URL
           value: __AzureDevOpsUrl__

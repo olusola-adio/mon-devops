@@ -24,9 +24,9 @@ jobs:
             namespace: 'default'
             secretType: generic
             secretArguments: --from-literal=pattokensecret=${{ parameters.AzurePatToken }}
-            secretName: dfc-azuredevops-pat-token
+            secretName: mon-azuredevops-pat-token
         # Deploy the NCS.AzureDevOpsAgents.OWASP docker image
-        - template: AzureDevOpsTemplates\Deploy\StepTemplates\dfc-kubernetes-deploy.yml@dfc-devops
+        - template: AzureDevOpsTemplates\Deploy\StepTemplates\mon-kubernetes-deploy.yml@mon-devops
           parameters:
             AksResourceGroup: ${{ parameters.AksResourceGroup }}
             AzureSubscriptionEndpoint: ${{ parameters.AzureSubscriptionEndpoint }}
@@ -34,7 +34,7 @@ jobs:
             ManifestFileName: owasp-agent.kubernetes.yml
             PathToManifest: $(Pipeline.Workspace)/NCS.AzureDevOpsAgents.OWASP
         # Deploy the NCS.AzureDevOpsAgents.JMeter docker image
-        - template: AzureDevOpsTemplates\Deploy\StepTemplates\dfc-kubernetes-deploy.yml@dfc-devops
+        - template: AzureDevOpsTemplates\Deploy\StepTemplates\mon-kubernetes-deploy.yml@mon-devops
           parameters:
             AksResourceGroup: ${{ parameters.AksResourceGroup }}
             AzureSubscriptionEndpoint: ${{ parameters.AzureSubscriptionEndpoint }}

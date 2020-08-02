@@ -1,10 +1,10 @@
 # common variables
-$ResourceGroupName = "dwp-test-template-rg"
+$ResourceGroupName = "mon-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\sql-server.json"
 $TemplateParametersDefault = @{
-  sqlServerName                         = "dfc-foo-bar-sql"
+  sqlServerName                         = "mon-foo-bar-sql"
   sqlServerAdminPassword                = "Not-a-real-password"
-  storageAccountName                    = "dfctesttemplatestr"
+  storageAccountName                    = "montesttemplatestr"
   sqlServerActiveDirectoryAdminLogin    = "SQL_ADMIN_GRP"
   sqlServerActiveDirectoryAdminObjectId = "12345678-abcd-abcd-abcd-1234567890ab"
 }
@@ -52,7 +52,7 @@ Describe "SQL Server Deployment Tests" -Tag "Acceptance" {
 
   Context "When SQL Server deployed with an elastic pool (just name specified)" {
     $TemplateParameters = $TemplateParametersDefault
-    $TemplateParameters['elasticPoolName']         = "dfc-foo-bar-epl"
+    $TemplateParameters['elasticPoolName']         = "mon-foo-bar-epl"
     $TestTemplateParams['TemplateParameterObject'] = $TemplateParameters
 
     $output = Test-AzureRmResourceGroupDeployment @TestTemplateParams

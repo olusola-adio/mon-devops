@@ -96,10 +96,10 @@ function Get-FunctionAppName {
         Get the full name of a function from it's branch name and base name
 
         .EXAMPLE
-        Get-FunctionAppName -FunctionAppBaseName dfc-dev-func-fa -FunctionAppVersion v2
+        Get-FunctionAppName -FunctionAppBaseName mon-dev-func-fa -FunctionAppVersion v2
 
         .PARAMETER FunctionAppBaseName
-        The base name of the function. Must be in the form dfc-<env>-<what>-fa
+        The base name of the function. Must be in the form mon-<env>-<what>-fa
 
         .PARAMETER FunctionAppVersion
         The version of the app. Must be in the form v<Number> - ie: v1

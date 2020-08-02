@@ -21,7 +21,7 @@ Name of the business to which the resources belong, select from either National 
 Name of the service offering to which the resources belong, select from Course Directory, Course Directory (PP), Data Sharing Service, Data Sharing Service (PP), Digital First Career Service (DFCS) Website, Logion Website, NCS Website or NCS Website (PP)
 
 .EXAMPLE
-Set-EsfaResourceGroupTags -ResourceGroupName "dfc-dev-foobar-rg" -Environment "Dev/Test" -ParentBusiness "National Careers Service" -ServiceOffering "Course Directory"
+Set-EsfaResourceGroupTags -ResourceGroupName "mon-dev-foobar-rg" -Environment "Dev/Test" -ParentBusiness "National Careers Service" -ServiceOffering "Course Directory"
 #>
 
 [CmdletBinding()]

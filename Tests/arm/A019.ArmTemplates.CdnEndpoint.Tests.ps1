@@ -1,10 +1,10 @@
 # common variables
-$ResourceGroupName = "dwp-test-template-rg"
+$ResourceGroupName = "mon-test-template-rg"
 $TemplateFile = "$PSScriptRoot\..\..\ArmTemplates\CDN\cdn-endpoint.json"
 $TemplateParametersDefault = @{
-    cdnProfileName = "dfc-foo-shared-cdn"
-    cdnEndPointName = "dfc-foo-bar-assets"
-    originHostName = "https://dfcfoobarstr.z6.web.core.windows.net/"
+    cdnProfileName = "mon-foo-shared-cdn"
+    cdnEndPointName = "mon-foo-bar-assets"
+    originHostName = "https://monfoobarstr.z6.web.core.windows.net/"
 }
 
 Describe "CDN Endpoint Deployment Tests" -Tag "Acceptance" {

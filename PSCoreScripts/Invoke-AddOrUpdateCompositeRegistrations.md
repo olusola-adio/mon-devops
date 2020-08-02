@@ -11,7 +11,7 @@ This script creates/updates path and region registrations in the Composite shell
 An example invocation:
 
 ```powershell
-.\Invoke-AddOrUpdateCompositeRegistrations.ps1 -PathApiUrl https://dfc-dev-compui-paths-fa.azurewebsites.net/api -RegionApiUrl https://dfc-dev-compui-regions-fa.azurewebsites.net/api -RegistrationFile C:\Repos\dfc-app-jobprofiles\Resources\PageRegistration\registration.json
+.\Invoke-AddOrUpdateCompositeRegistrations.ps1 -PathApiUrl https://mon-dev-compui-paths-fa.azurewebsites.net/api -RegionApiUrl https://mon-dev-compui-regions-fa.azurewebsites.net/api -RegistrationFile C:\Repos\mon-app-jobprofiles\Resources\PageRegistration\registration.json
 ```
 
 ## Configuration File examples
