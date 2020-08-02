@@ -54,9 +54,9 @@ $TestParameters = @{
 
 
 
-# Install-Module -Name Pester -RequiredVersion 4.10.1 -Force -SkipPublisherCheck
+Install-Module -Name Pester -RequiredVersion 4.10.1 -Force -SkipPublisherCheck
 
-# Import-Module -Name Pester -Scope Global
+Import-Module -Name Pester -Scope Global
 
 # $pesterModules = @( Get-Module -Name "Pester" -ErrorAction "SilentlyContinue" );
 # if( ($null -eq $pesterModules) -or ($pesterModules.Length -eq 0) )
@@ -72,9 +72,9 @@ $TestParameters = @{
 #     throw "unsupported pester version '$($pesterModules[0].Version)'";
 # }
 # Invoke tests
-#$Result = Invoke-Pester @TestParameters
+$Result = Invoke-Pester @TestParameters
 
-$Result = Invoke-Pester -Path $pathToTests -CI
+#$Result = Invoke-Pester -Path $pathToTests -CI
 
 #$Result = Invoke-Pester -Script $pathToTests -PassThru -Verbose -OutputFile $testResult -OutputFormat NUnitXml -CodeCoverage $fullPathToScripts -CodeCoverageOutputFile $codeCoverageResult -Show All
 
