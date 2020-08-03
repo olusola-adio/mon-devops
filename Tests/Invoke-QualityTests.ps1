@@ -46,6 +46,10 @@ $TestParameters = @{
 # Invoke tests
 $Result = Invoke-Pester @TestParameters
 
+
+
+#$Result = Invoke-Pester -Script "$PSScriptRoot\Quality" -PassThru -Verbose -OutputFile "$PSScriptRoot\TEST-Quality.xml" -OutputFormat NUnitXml -Show All
+
 # report failures
 if ($Result.FailedCount -ne 0) { 
     Write-Error "Pester returned $($result.FailedCount) errors"

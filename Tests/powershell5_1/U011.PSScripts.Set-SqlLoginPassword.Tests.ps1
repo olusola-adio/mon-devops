@@ -22,6 +22,7 @@ Describe "Set-SqlLoginPassword unit tests" -Tag "Unit" {
 
     $SQLScript = "$TestDrive\Mock.sql"
 
+
     Mock Invoke-Sqlcmd
     Mock Get-AzureRmSqlServer {
         $mock = '{ "ResourceGroupName": "mon-foo-bar-rg", "ServerName": "mon-foo-bar-sql", "FullyQualifiedDomainName": "mon-foo-bar-sql.database.windows.net" }'

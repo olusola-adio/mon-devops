@@ -1,21 +1,20 @@
 Push-Location -Path $PSScriptRoot\..\..\PSScripts\
 
-$strname = "monfoobarstr"
-$strkey  = "foo="
-$origin  = "foo.example.org"
-
 Describe "Set-CorsOnStorageAccount unit tests" -Tag "Unit" {
 
-    It "Should call the Azure cmdlets" {
+    BeforeAll {  
         Mock New-AzureStorageContext
         Mock Get-AzureStorageCORSRule
         Mock Set-AzureStorageCORSRule
+    }
 
-        .\Set-CorsOnStorageAccount -StorageAccountName $strname -StorageAccountKey $strkey -AllowedOrigins $origin
+    It "Should call the Azure cmdlets" {
 
-        Assert-MockCalled New-AzureStorageContext -Exactly 1 -ParameterFilter { $StorageAccountName -eq $strname -and $StorageAccountKey -eq $strkey } -Scope It
-        Assert-MockCalled Get-AzureStorageCORSRule -Exactly 1
-        Assert-MockCalled Set-AzureStorageCORSRule -Exactly 1
+        .\..\..\PSScripts\Set-CorsOnStorageAccount -StorageAccountName "monfoobarstr" -StorageAccountKey "foo=" -AllowedOrigins "foo.example.org"
+
+        Should -Invoke  New-AzureStorageContext -Exactly 1 -ParameterFilter { $StorageAccountName -eq "monfoobarstr" -and $StorageAccountKey -eq "foo=" } -Scope It
+        Should -Invoke  Get-AzureStorageCORSRule -Exactly 1
+        Should -Invoke  Set-AzureStorageCORSRule -Exactly 1
     }
 
 }

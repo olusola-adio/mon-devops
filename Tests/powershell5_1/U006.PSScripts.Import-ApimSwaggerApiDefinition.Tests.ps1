@@ -2,8 +2,7 @@ Push-Location -Path $PSScriptRoot\..\..\PSScripts\
 
 Describe "Import-ApimSwaggerApiDefinition unit tests" -Tag "Unit" {
 
-    It "Should run with AzureRM cmdlets if a URL is supplied but not create a file" {
-
+    BeforeAll {  
         Mock New-AzureRmApiManagementContext -MockWith { return @{} }
         Mock Invoke-RestMethod
         Mock Set-Content
@@ -14,6 +13,9 @@ Describe "Import-ApimSwaggerApiDefinition unit tests" -Tag "Unit" {
             }
         }
         Mock Import-AzureRmApiManagementApi
+    }
+
+    It "Should run with AzureRM cmdlets if a URL is supplied but not create a file" {
 
         $CmdletParameters = @{
            ApimResourceGroup = "mon-foo-bar-rg"
@@ -22,12 +24,12 @@ Describe "Import-ApimSwaggerApiDefinition unit tests" -Tag "Unit" {
            SwaggerSpecificationUrl = "https://mon-foo-bar-fa.azurewebsites.net/api/bar/bar-api-definition"
        }
 
-        .\Import-ApimSwaggerApiDefinition @CmdletParameters
+       .\..\..\PSScripts\Import-ApimSwaggerApiDefinition @CmdletParameters
 
-        Assert-MockCalled Invoke-RestMethod -Exactly 0 -Scope It
-        Assert-MockCalled Set-Content -Exactly 0 -Scope It
-        Assert-MockCalled Get-AzureRmApiManagementApi -Exactly 1 -Scope It
-        Assert-MockCalled Import-AzureRmApiManagementApi -Exactly 1 -Scope It
+        Should -Invoke Invoke-RestMethod -Exactly 0 -Scope It
+        Should -Invoke Set-Content -Exactly 0 -Scope It
+        Should -Invoke Get-AzureRmApiManagementApi -Exactly 1 -Scope It
+        Should -Invoke Import-AzureRmApiManagementApi -Exactly 1 -Scope It
 
     }
 
@@ -52,12 +54,12 @@ Describe "Import-ApimSwaggerApiDefinition unit tests" -Tag "Unit" {
            UseAzModule = $true
        }
 
-        .\Import-ApimSwaggerApiDefinition @CmdletParameters
+       .\..\..\PSScripts\Import-ApimSwaggerApiDefinition @CmdletParameters
 
-        Assert-MockCalled Invoke-RestMethod -Exactly 0 -Scope It
-        Assert-MockCalled Set-Content -Exactly 0 -Scope It
-        Assert-MockCalled Get-AzApiManagementApi -Exactly 1 -Scope It
-        Assert-MockCalled Import-AzApiManagementApi -Exactly 1 -Scope It
+        Should -Invoke  Invoke-RestMethod -Exactly 0 -Scope It
+        Should -Invoke  Set-Content -Exactly 0 -Scope It
+        Should -Invoke  Get-AzApiManagementApi -Exactly 1 -Scope It
+        Should -Invoke  Import-AzApiManagementApi -Exactly 1 -Scope It
 
     }
 

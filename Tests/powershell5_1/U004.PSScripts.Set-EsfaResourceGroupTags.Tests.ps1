@@ -2,33 +2,35 @@ Push-Location -Path $PSScriptRoot\..\..\PSScripts\
 
 Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
 
-    Mock Get-AzureRmResourceGroup { [PsCustomObject]
-        @{
-            ResourceGroupName = "mon-foobar-rg"
-            Location = "uksouth"
-            Tags = @{"Parent Business" =  "Logion Limited"; "Service Offering" = "Digital First Career Service (MONS) Website"; "Environment" = "Dev/Test"} 
+    BeforeAll {   
+        Mock Get-AzureRmResourceGroup { [PsCustomObject]
+            @{
+                ResourceGroupName = "mon-foobar-rg"
+                Location          = "uksouth"
+                Tags              = @{"Parent Business" = "Logion Limited"; "Service Offering" = "Digital First Career Service (MONS) Website"; "Environment" = "Dev/Test" } 
+            }
         }
+        Mock New-AzureRmResourceGroup
+        Mock Set-AzureRmResourceGroup
     }
-    Mock New-AzureRmResourceGroup
-    Mock Set-AzureRmResourceGroup
 
     It "Should do nothing if a resource group exists with matching tags" {
 
-        .\Set-EsfaResourceGroupTags -ResourceGroupName "mon-foobar-rg" -Environment "Dev/Test" -ParentBusiness "Logion Limited" -ServiceOffering "Digital First Career Service (MONS) Website"
+        .\..\..\PSScripts\Set-EsfaResourceGroupTags -ResourceGroupName "mon-foobar-rg" -Environment "Dev/Test" -ParentBusiness "Logion Limited" -ServiceOffering "Digital First Career Service (MONS) Website"
 
-        Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
-        Assert-MockCalled New-AzureRmResourceGroup -Exactly 0 -Scope It
-        Assert-MockCalled Set-AzureRmResourceGroup -Exactly 0 -Scope It
+        Should -Invoke  Get-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  New-AzureRmResourceGroup -Exactly 0 -Scope It
+        Should -Invoke  Set-AzureRmResourceGroup -Exactly 0 -Scope It
 
     }
 
     It "Should update existing resource group if group exists with different tags" {
 
-        .\Set-EsfaResourceGroupTags -ResourceGroupName "mon-foobar-rg" -Environment "Dev/Test" -ParentBusiness "Logion Limited" -ServiceOffering "Digital First Career Service (MONS) Website (PP)"
+        .\..\..\PSScripts\Set-EsfaResourceGroupTags -ResourceGroupName "mon-foobar-rg" -Environment "Dev/Test" -ParentBusiness "Logion Limited" -ServiceOffering "Digital First Career Service (MONS) Website (PP)"
 
-        Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
-        Assert-MockCalled New-AzureRmResourceGroup -Exactly 0 -Scope It
-        Assert-MockCalled Set-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  Get-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  New-AzureRmResourceGroup -Exactly 0 -Scope It
+        Should -Invoke  Set-AzureRmResourceGroup -Exactly 1 -Scope It
 
     }
 
@@ -36,11 +38,11 @@ Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
 
         Mock Get-AzureRmResourceGroup
 
-        .\Set-EsfaResourceGroupTags -ResourceGroupName "mon-barfoo-rg" -Environment "Dev/Test" -ParentBusiness "Logion Limited" -ServiceOffering "Digital First Career Service (MONS) Website (PP)"
+        .\..\..\PSScripts\Set-EsfaResourceGroupTags -ResourceGroupName "mon-barfoo-rg" -Environment "Dev/Test" -ParentBusiness "Logion Limited" -ServiceOffering "Digital First Career Service (MONS) Website (PP)"
 
-        Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
-        Assert-MockCalled New-AzureRmResourceGroup -Exactly 1 -Scope It
-        Assert-MockCalled Set-AzureRmResourceGroup -Exactly 0 -Scope It
+        Should -Invoke  Get-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  New-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  Set-AzureRmResourceGroup -Exactly 0 -Scope It
 
     }
 
@@ -49,15 +51,15 @@ Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
         Mock Get-AzureRmResourceGroup { [PsCustomObject]
             @{
                 ResourceGroupName = "mon-foobar-rg"
-                Location = "northeurope"
+                Location          = "northeurope"
             }
         }
     
-        .\Set-EsfaResourceGroupTags -ResourceGroupName "mon-barfoo-rg" -Environment "Dev/Test" -ParentBusiness "Logion Limited" -ServiceOffering "Digital First Career Service (MONS) Website (PP)"
+        .\..\..\PSScripts\Set-EsfaResourceGroupTags -ResourceGroupName "mon-barfoo-rg" -Environment "Dev/Test" -ParentBusiness "Logion Limited" -ServiceOffering "Digital First Career Service (MONS) Website (PP)"
 
-        Assert-MockCalled Get-AzureRmResourceGroup -Exactly 1 -Scope It
-        Assert-MockCalled New-AzureRmResourceGroup -Exactly 0 -Scope It
-        Assert-MockCalled Set-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  Get-AzureRmResourceGroup -Exactly 1 -Scope It
+        Should -Invoke  New-AzureRmResourceGroup -Exactly 0 -Scope It
+        Should -Invoke  Set-AzureRmResourceGroup -Exactly 1 -Scope It
 
     }
 

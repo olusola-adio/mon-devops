@@ -74,6 +74,11 @@ Import-Module -Name Pester -Scope Global
 # Invoke tests
 $Result = Invoke-Pester @TestParameters
 
+#$Result = Invoke-Pester -Path $pathToTests -CI
+
+#$Result = Invoke-Pester -Script $pathToTests -PassThru -Verbose -OutputFile $testResult -OutputFormat NUnitXml -CodeCoverage $fullPathToScripts -CodeCoverageOutputFile $codeCoverageResult -Show All
+
+
 # report failures
 if ($Result.FailedCount -ne 0) { 
     Write-Error "Pester returned $($result.FailedCount) errors"
