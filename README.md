@@ -1,6 +1,6 @@
 # mon-devops
 
-[![Build Status](https://dev.azure.com/olusolaadio/mon-olu/_apis/build/status/olusola-adio.mon-devops?branchName=master)](https://dev.azure.com/olusolaadio/mon-olu/_build/latest?definitionId=7&branchName=master)
+[![Build Status](https://dev.azure.com/logion-mon/mon/_apis/build/status/mon-devops?branchName=master)](https://dev.azure.com/logion-mon/mon/_build/latest?definitionId=2&branchName=master)
 
 ARM templates, PowerShell modules and scripts, policies, documentation and other resources used in the MON Azure pipelines
 
