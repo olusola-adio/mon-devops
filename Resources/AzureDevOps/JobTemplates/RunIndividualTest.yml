@@ -20,26 +20,26 @@ jobs:
         **/CODECOVERAGE-${{ parameters.ResultsFileSuffix }}.xml
   - script: dir $(Build.SourcesDirectory)
   - script: dir $(System.DefaultWorkingDirectory)
-  - task: PowerShell@2
-    displayName: 'Install-Module Pester'
-    inputs:
-      targetType: inline
-      script: 'Install-Module -Name Pester -RequiredVersion 4.10.1 -Force -SkipPublisherCheck' # Required when targetType == Inline
-  - task: PowerShell@2
-    displayName: 'Import-Module Pester'
-    inputs:
-      targetType: inline
-      script: 'Import-Module -Name Pester -Scope Local' # Required when targetType == Inline
-  - task: PowerShell@2
-    displayName: 'Install-Module PSScriptAnalyzer'
-    inputs:
-      targetType: inline
-      script: 'Install-Module -Name PSScriptAnalyzer -Force -SkipPublisherCheck' # Required when targetType == Inline
-  - task: PowerShell@2
-    displayName: 'Import-Module PSScriptAnalyzer'
-    inputs:
-      targetType: inline
-      script: 'Import-Module -Name PSScriptAnalyzer -Scope Local' # Required when targetType == Inline
+  # - task: PowerShell@2
+  #   displayName: 'Install-Module Pester'
+  #   inputs:
+  #     targetType: inline
+  #     script: 'Install-Module -Name Pester -RequiredVersion 4.10.1 -Force -SkipPublisherCheck' # Required when targetType == Inline
+  # - task: PowerShell@2
+  #   displayName: 'Import-Module Pester'
+  #   inputs:
+  #     targetType: inline
+  #     script: 'Import-Module -Name Pester -Scope Local' # Required when targetType == Inline
+  # - task: PowerShell@2
+  #   displayName: 'Install-Module PSScriptAnalyzer'
+  #   inputs:
+  #     targetType: inline
+  #     script: 'Install-Module -Name PSScriptAnalyzer -Force -SkipPublisherCheck' # Required when targetType == Inline
+  # - task: PowerShell@2
+  #   displayName: 'Import-Module PSScriptAnalyzer'
+  #   inputs:
+  #     targetType: inline
+  #     script: 'Import-Module -Name PSScriptAnalyzer -Scope Local' # Required when targetType == Inline
   - task: PowerShell@2
     displayName: 'Install-Module -Name Az.Storage'
     inputs:
