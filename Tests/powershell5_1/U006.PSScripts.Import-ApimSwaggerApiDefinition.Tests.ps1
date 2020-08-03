@@ -24,7 +24,7 @@ Describe "Import-ApimSwaggerApiDefinition unit tests" -Tag "Unit" {
            SwaggerSpecificationUrl = "https://mon-foo-bar-fa.azurewebsites.net/api/bar/bar-api-definition"
        }
 
-       .\..\..\Import-ApimSwaggerApiDefinition @CmdletParameters
+       .\..\..\PSScripts\Import-ApimSwaggerApiDefinition @CmdletParameters
 
         Should -Invoke Invoke-RestMethod -Exactly 0 -Scope It
         Should -Invoke Set-Content -Exactly 0 -Scope It
@@ -54,7 +54,7 @@ Describe "Import-ApimSwaggerApiDefinition unit tests" -Tag "Unit" {
            UseAzModule = $true
        }
 
-       .\..\..\Import-ApimSwaggerApiDefinition @CmdletParameters
+       .\..\..\PSScripts\Import-ApimSwaggerApiDefinition @CmdletParameters
 
         Should -Invoke  Invoke-RestMethod -Exactly 0 -Scope It
         Should -Invoke  Set-Content -Exactly 0 -Scope It
