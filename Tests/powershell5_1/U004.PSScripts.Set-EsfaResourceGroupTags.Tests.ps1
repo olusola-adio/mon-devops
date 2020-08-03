@@ -2,15 +2,17 @@ Push-Location -Path $PSScriptRoot\..\..\PSScripts\
 
 Describe "Set-EsfaResourceGroupTags unit tests" -Tag "Unit" {
 
-    Mock Get-AzureRmResourceGroup { [PsCustomObject]
+    BeforeAll{   
+        Mock Get-AzureRmResourceGroup { [PsCustomObject]
         @{
             ResourceGroupName = "mon-foobar-rg"
             Location = "uksouth"
             Tags = @{"Parent Business" =  "Logion Limited"; "Service Offering" = "Digital First Career Service (MONS) Website"; "Environment" = "Dev/Test"} 
         }
+    
+        Mock New-AzureRmResourceGroup
+        Mock Set-AzureRmResourceGroup
     }
-    Mock New-AzureRmResourceGroup
-    Mock Set-AzureRmResourceGroup
 
     It "Should do nothing if a resource group exists with matching tags" {
 
