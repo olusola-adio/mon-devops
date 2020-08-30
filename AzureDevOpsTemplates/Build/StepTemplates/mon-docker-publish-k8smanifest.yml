@@ -23,16 +23,6 @@ steps:
     docker push ${{ parameters.ContainerRegistryAdminUser }}.azurecr.io/$ImageName
   displayName: 'Publish ${{ parameters.ImageBaseName }}:${{ parameters.ImageTag }} image'
   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-- script: |
-    cd $(Build.ArtifactStagingDirectory)
-    mkdir ${{ parameters.ImageBaseName }}
-    cd ${{ parameters.DockerfileContext }}
-    dir ${{ parameters.DockerfileContext }}
-    dir ${{ parameters.DockerfileContext }}/${{ parameters.ManifestFilePath }}
-  displayName: 'Create dir $(Build.ArtifactStagingDirectory)/${{ parameters.ImageBaseName }}'
-  condition: ne('${{ parameters.DockerfileContext }}/${{ parameters.ManifestFilePath }}', '')
-- script: dir ${{ parameters.DockerfileContext }}
-- script: dir ${{ parameters.DockerfileContext }}/${{ parameters.ManifestFilePath }}
 - task: CopyFiles@2
   displayName: 'Copy Manifest File to: $(Build.ArtifactStagingDirectory)/${{ parameters.ImageBaseName }}'
   condition: ne('${{ parameters.DockerfileContext }}/${{ parameters.ManifestFilePath }}', '')
