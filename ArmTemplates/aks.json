@@ -106,6 +106,34 @@
         "podCidr": {
             "type": "string",
             "defaultValue": "10.244.0.0/16"
+        },
+        "aadEnabled": {
+            "defaultValue": false,
+            "type": "bool",
+            "metadata": {
+                "description": "Specifies whether enabling AAD integration."
+            }
+        },
+        "aadProfileAdminGroupObjectIDs": {
+            "defaultValue": [],
+            "type": "array",
+            "metadata": {
+                "description": "Specifies the AAD group object IDs that will have admin role of the cluster."
+            }
+        },
+        "aadProfileManaged": {
+            "defaultValue": false,
+            "type": "bool",
+            "metadata": {
+                "description": "Specifies whether to enable managed AAD integration."
+            }
+        },
+        "aadProfileEnableAzureRBAC": {
+            "defaultValue": false,
+            "type": "bool",
+            "metadata": {
+                "description": "Specifies whether to  to enable Azure RBAC for Kubernetes authorization."
+            }
         }
     },
     "variables": {
@@ -121,6 +149,12 @@
                     }
                 }
             }
+        },
+        "aadProfileConfiguration": {
+            "managed": "[parameters('aadProfileManaged')]",
+            "enableAzureRBAC": "[parameters('aadProfileEnableAzureRBAC')]",
+            "adminGroupObjectIDs": "[parameters('aadProfileAdminGroupObjectIDs')]",
+            "tenantID": "[parameters('rbacTenantId')]"
         }
 
     },
@@ -130,6 +164,9 @@
             "type": "Microsoft.ContainerService/managedClusters",
             "location": "[resourceGroup().location]",
             "name": "[parameters('clusterName')]",
+            "identity": {
+                "type": "SystemAssigned"
+            },
             "properties": {
                 "kubernetesVersion": "[parameters('kubernetesVersion')]",
                 "dnsPrefix": "[parameters('clusterName')]",
@@ -147,16 +184,17 @@
                 "addonProfiles": "[if(equals(parameters('logAnalyticsWorkspaceName'), ''), variables('addOnObject').noAddons, variables('addOnObject').omsAddon)]",
                 "nodeResourceGroup": "[parameters('nodeResourceGroup')]",
                 "enableRBAC": true,
+                "aadProfile": "[if(parameters('aadEnabled'), variables('aadProfileConfiguration'), json('null'))]",
                 "servicePrincipalProfile": {
                     "clientId": "[parameters('servicePrincipalClientId')]",
                     "secret": "[parameters('servicePrincipalSecret')]"
                 },
-                "aadProfile": {
-                    "clientAppID": "[parameters('rbacClientAppId')]",
-                    "serverAppID": "[parameters('rbacServerAppId')]",
-                    "serverAppSecret": "[parameters('rbacServerAppSecret')]",
-                    "tenantID": "[parameters('rbacTenantId')]"
-                },
+                // "aadProfile": {
+                //     "clientAppID": "[parameters('rbacClientAppId')]",
+                //     "serverAppID": "[parameters('rbacServerAppId')]",
+                //     "serverAppSecret": "[parameters('rbacServerAppSecret')]",
+                //     "tenantID": "[parameters('rbacTenantId')]"
+                // },
                 "networkProfile": {
                     "networkPlugin": "kubenet",
                     "serviceCidr": "[parameters('serviceCidr')]",
