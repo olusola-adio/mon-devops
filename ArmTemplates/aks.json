@@ -155,9 +155,6 @@
             "type": "Microsoft.ContainerService/managedClusters",
             "location": "[resourceGroup().location]",
             "name": "[parameters('clusterName')]",
-            "identity": {
-                "type": "SystemAssigned"
-            },
             "properties": {
                 "kubernetesVersion": "[parameters('kubernetesVersion')]",
                 "dnsPrefix": "[parameters('clusterName')]",
@@ -181,12 +178,6 @@
                     "clientId": "[parameters('servicePrincipalClientId')]",
                     "secret": "[parameters('servicePrincipalSecret')]"
                 },
-                // "aadProfile": {
-                //     "clientAppID": "[parameters('rbacClientAppId')]",
-                //     "serverAppID": "[parameters('rbacServerAppId')]",
-                //     "serverAppSecret": "[parameters('rbacServerAppSecret')]",
-                //     "tenantID": "[parameters('rbacTenantId')]"
-                // },
                 "networkProfile": {
                     "networkPlugin": "kubenet",
                     "serviceCidr": "[parameters('serviceCidr')]",
