@@ -169,7 +169,8 @@
                         "osType": "Linux",
                         "vnetSubnetID": "[variables('vnetSubnetID')]",
                         "type": "VirtualMachineScaleSets",
-                        "storageProfile": "ManagedDisks"
+                        "storageProfile": "ManagedDisks",
+                        "mode" : "System"
                     }
                 ],
                 "addonProfiles": "[if(equals(parameters('logAnalyticsWorkspaceName'), ''), variables('addOnObject').noAddons, variables('addOnObject').omsAddon)]",
