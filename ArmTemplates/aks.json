@@ -140,14 +140,7 @@
                     }
                 }
             }
-        },
-        "aadProfileConfiguration": {
-            "managed": "[parameters('aadProfileManaged')]",
-            "enableAzureRBAC": "[parameters('aadProfileEnableAzureRBAC')]",
-            "adminGroupObjectIDs": "[parameters('aadProfileAdminGroupObjectIDs')]",
-            "tenantID": "[parameters('rbacTenantId')]"
         }
-
     },
     "resources": [
         {
@@ -167,16 +160,21 @@
                         "vnetSubnetID": "[variables('vnetSubnetID')]",
                         "type": "VirtualMachineScaleSets",
                         "storageProfile": "ManagedDisks",
-                        "mode" : "System"
+                        "mode": "System"
                     }
                 ],
                 "addonProfiles": "[if(equals(parameters('logAnalyticsWorkspaceName'), ''), variables('addOnObject').noAddons, variables('addOnObject').omsAddon)]",
                 "nodeResourceGroup": "[parameters('nodeResourceGroup')]",
                 "enableRBAC": true,
-                "aadProfile": "[if(parameters('aadEnabled'), variables('aadProfileConfiguration'), json('null'))]",
+                "aadProfile":  {
+                    "managed": true,
+                    "tenantId": "[parameters('rbacTenantId')]",
+                    "adminGroupObjectIDs": [
+                        "[parameters('aadProfileAdminGroupObjectIDs')]"
+                    ]
+                },
                 "servicePrincipalProfile": {
-                    "clientId": "[parameters('servicePrincipalClientId')]",
-                    "secret": "[parameters('servicePrincipalSecret')]"
+                    "clientId": "msi"
                 },
                 "networkProfile": {
                     "networkPlugin": "kubenet",
@@ -185,6 +183,9 @@
                     "podCidr": "[parameters('podCidr')]",
                     "dockerBridgeCidr": "[parameters('dockerBridgeCidr')]"
                 }
+            },
+            "identity": {
+                "type": "SystemAssigned"
             }
         }
     ],
