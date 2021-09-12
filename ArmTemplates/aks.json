@@ -29,12 +29,6 @@
         "serviceCidr": {
             "type": "string"
         },
-        "servicePrincipalClientId": {
-            "type": "string"
-        },
-        "servicePrincipalSecret": {
-            "type": "securestring"
-        },
         "subnetName": {
             "type": "string",
             "metadata": {
@@ -98,32 +92,11 @@
             "type": "string",
             "defaultValue": "10.244.0.0/16"
         },
-        "aadEnabled": {
-            "defaultValue": false,
-            "type": "bool",
-            "metadata": {
-                "description": "Specifies whether enabling AAD integration."
-            }
-        },
         "aadProfileAdminGroupObjectIDs": {
             "defaultValue": [],
             "type": "array",
             "metadata": {
                 "description": "Specifies the AAD group object IDs that will have admin role of the cluster."
-            }
-        },
-        "aadProfileManaged": {
-            "defaultValue": false,
-            "type": "bool",
-            "metadata": {
-                "description": "Specifies whether to enable managed AAD integration."
-            }
-        },
-        "aadProfileEnableAzureRBAC": {
-            "defaultValue": false,
-            "type": "bool",
-            "metadata": {
-                "description": "Specifies whether to  to enable Azure RBAC for Kubernetes authorization."
             }
         }
     },
